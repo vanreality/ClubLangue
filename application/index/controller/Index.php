@@ -8,16 +8,15 @@ class Index extends Controller
 {
     public function index()
     {
-        return view();
+        return $this->fetch();
     }
 
-    public function info(Request $request)
+    public function search()
     {
-//        dump(config());
-//        dump($request->domain());
-//        dump($request->path());
+        return $this->fetch();
+    }
 
-//        session("test", "test");
-//        dump($request->session());
+    public function info() {
+        return dump(config());
     }
 }
