@@ -1,0 +1,132 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.start{
+    width: 100%;height: 10%;
+    background-color:#5c81a4;
+    position: fixed;
+}
+.headerSpan{
+    color: #f3f3f3;
+    font-size: 10px;
+}
+
+#headerDivCher{
+    height: 100%;width: 60%;
+    float: left;
+    text-align: center;
+    margin-top: 2%;
+}
+
+#headerDivImage{
+    height: 100%;width: 30%;
+    float: right;
+    padding-right: 2%;
+    margin-top: 1%;
+}
+
+.container{
+    width: 100%;height: 100%;
+}
+
+.section{
+    width: 100%;
+    height: 100%;
+}
+
+#mainSection{background-color: #75c4c6;}
+#divideSection1{background-color: #ecd5d4;}
+#divideSection2{background-color: #f3f3f3;}
+.headerImg{height: 50px; width: 60px;float: right;}
+#sectionTextLeft{
+    text-align: center;
+    height: 40%;width:45%;
+    padding-top: 23%;padding-bottom: 30%;padding-left: 5%;
+    float: left;
+    color:#948e3b;
+}
+#sectionTextRight{
+    text-align: center;
+    height: 40%;width:45%;
+    padding-top: 15%;padding-bottom: 30%;padding-right: 5%;
+    float: right;
+    color: #5c81a4;
+}
+
+#sectionBtnApprend{
+    height:10%;width: 30%;margin-top:25%;margin-bottom: 33%;
+    background-color: #948e2b;
+    float: right;
+    margin-right: 10%;
+    color: #ecd5d4;
+    font-size: 35px;
+    border-radius: 15px;
+}
+
+#sectionBtnEnsei{
+    height: 10%;width: 30%;margin-top:5%;margin-bottom: 33%;
+    background-color: #5c81a4;
+    float: left;
+    margin-left: 10%;
+    color: #f3f3f3;
+    font-size: 35px;
+    border-radius: 15px;
+}
+
+
+#bodyText{
+    width: 60%;
+    height: 20%;
+    color: #f3f3f3;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+    padding-top: 10%;
+
+    padding-left: 20%;
+
+}
+#leftPart{
+    height: 40%;width: 50%;
+    float: left;
+}
+
+#rightPart{
+    height: 40%;width: 50%;
+    float: right;
+}
+
+.iconImage{
+    width: 150px;height: 150px;
+}
+
+#mainBtnApprend{
+    height:20%;width: 30%;margin-top:28%;margin-bottom: 33%;
+    background-color:  #f3f3f3;
+    float: right;
+    margin-right: 10%;
+    color: #75c4c6;
+    font-size: 35px;
+    border-radius: 15px;
+}
+#mainBtnEnsei{
+    height: 20%;width: 30%;margin-top:28%;margin-bottom: 33%;
+    background-color:  #f3f3f3;
+    float: left;
+    margin-left: 10%;
+    color: #75c4c6;
+    font-size: 35px;
+    border-radius: 15px;
+}
+#iconLeft{float: left;}
+#iconRight{float: right;}
+
+.headBtn{
+    width: 100px;
+    height: 20px;
+    border-radius: 15px;
+}
