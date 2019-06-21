@@ -1,7 +1,46 @@
 {extend name="common/base" /}
 
 {block name="container"}
-<!--main body-->
+<section class="section" id="mainSection">
+    <div id="bodyText">
+        <p>Joignez-nous chez</p>
+        <p>ClubLangue</p>
+    </div>
+
+    <div id="leftPart">
+        <img id="iconLeft" class="iconImage" src="__STATIC__/images/iconLeft.svg" alt="iconLeft">
+        <input type="button" id="mainBtnApprend" value="Apprendre" onclick="toSection1();">
+    </div>
+
+    <div id="rightPart">
+        <input type="button" id="mainBtnEnsei" value="Enseigner" onclick="toSection2();">
+        <img id="iconRight" class="iconImage" src="__STATIC__/images/iconRight.svg" alt="iconRight">
+    </div>
+
+</section>
+
+<section class="section" id="divideSection1">
+    <div id="sectionTextLeft">
+        <p>Vous voulez apprendre une autre langue?</p>
+        <p>Connectez-vous tout de suite et</p>
+        <p>trouver votre tuteur de langue!</p>
+    </div>
+
+    <input id="sectionBtnApprend" type="button" value="Je veux apprendre" />
+
+</section>
+
+
+<section class="section" id="divideSection2">
+    <div id="sectionTextRight">
+        <p>Vous voulez enseigner une langue aux autres?</p>
+        <p>Connectez-vous tout de suite et</p>
+        <p>trouver votre "étudiant"!</p>
+    </div>
+
+    <input id="sectionBtnEnsei" type="button" value="Je veux enseigner" />
+
+</section>
 {/block}
 
 {block name="footer"}
