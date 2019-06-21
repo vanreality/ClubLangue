@@ -11,8 +11,12 @@ class Index extends Controller
         return $this->fetch();
     }
 
-    public function test()
+    public function search()
     {
         return $this->fetch();
+    }
+
+    public function info() {
+        return dump(config());
     }
 }

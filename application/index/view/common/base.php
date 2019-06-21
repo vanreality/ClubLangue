@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +21,7 @@
         </div>
 
         <div class="footer">
-            {include file="common/footer" /}
+            {block name="footer"}{/block}
         </div>
     </div>
 </body>
