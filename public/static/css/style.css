@@ -7,8 +7,6 @@ html, body{
 }
 
 
-
-
 .start{
     width: 100%;height: 10%;
     background-color:#5c81a4;
@@ -139,10 +137,11 @@ html, body{
 #loginBody{
     background-color:#f3f3f3;
     width:100%;
-    height:70%;
+    height:60%;
     margin-top:20%;
     color:#5c81a4;
     padding-top: 25%;
+    padding-bottom:30%;
 }
 #loginBody h1{
     margin-left:10%;
