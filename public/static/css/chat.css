@@ -14,17 +14,6 @@
 }
 
 
-body {
-    background-color: var(--bg);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 400;
-    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/image.jpg");
-    background-size: cover;
-}
-
 .wrapper {
     position: relative;
     top: 10%;
@@ -49,7 +38,7 @@ body {
 
 .container .left {
     float: left;
-    width: 37.6%;
+    width: 300px;
     height: 100%;
     border: 1px solid var(--light);
     background-color: var(--white);
@@ -176,7 +165,7 @@ body {
     position: relative;
     background-color: var(--white);
     float: left;
-    width: 62.4%;
+    width: calc(100% - 300px);
     height: 100%;
 }
 .container .right .top {
