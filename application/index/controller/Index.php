@@ -15,8 +15,8 @@ class Index extends Controller
     }
 
     public function signin(){
-        if (Session::has('userinfo')) {
-            return $this->profile();
+        if (session('?userinfo')) {
+            return $this->fetch('profile');
         } else {
             return $this->fetch();
         }
@@ -28,9 +28,11 @@ class Index extends Controller
         $password = trim(input('password'));
         // 判断用户名是否存在
 //        $data = Db::name('user')->where('email',$email)->select();
-        $data = User::where('email', $email)->find()->toArray();
+//        $data = User::where('email', $email)->find()->toArray();
+        $data = (new \app\index\model\User)->getUser($email);
 //         dump($data);exit;
         if (!$data) {
+            //TODO 修改提醒信息
             $this->error('用户名不存在，请确认后重试！');
         }
         // 判断密码是否正确
@@ -38,8 +40,10 @@ class Index extends Controller
             // 一般把用户信息存入session，记录登录状态
 //            session('userinfo',$data);
             Session::set('userinfo', $data);
-            $this->success('登录成功！','index');
+//            $this->success('登录成功！','index');
+            return $this->fetch('profile');
         }else{
+            //TODO 修改提醒信息
             $this->error('用户名和密码不匹配，请确认后重试！');
         }
     }
@@ -59,15 +63,9 @@ class Index extends Controller
         return dump($res);
     }
 
-    public function connexion()
-        {
-            return $this->fetch();
-        }
     public function profile()
-       {
+    {
            return $this->fetch();
-       }
-
-
+    }
 
 }
