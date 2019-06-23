@@ -98,22 +98,18 @@ class Index extends Controller
         }
     }
 
-    //temp
+    public function search() {
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            $type = trim(input("type"));
+            $language = trim(input("language"));
 
-    public function search()
-    {
-        return $this->fetch();
+            //TODO 根据类型和语言查询数据库
+
+            $users = User::all();
+            $this->assign("users", $users);
+            return $this->fetch();
+        }
     }
-
-    public function info() {
-//        $res = Db::query("select * from user");
-//        $res = Db::connect();
-//        $res = Db::table("user")->select();
-        $res = User::get(1)->toArray();
-        return dump($res);
-    }
-
-
-
-
 }

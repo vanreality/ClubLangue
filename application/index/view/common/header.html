@@ -5,20 +5,23 @@
 </a>
 
 <div id="headerDivCher">
-    <select class="headBtn">
-        <option value="learn">apprendre</option>
-        <option value="teach">enseigner</option>
-    </select>
-    <select class="headBtn">
-        <option value="en">anglais</option>
-        <option value="cn">chinois</option>
-        <option value="fr">français</option>
-        <option value="de">allemand</option>
-        <option value="sp">espagnol</option>
-        <option value="pt">portugal</option>
-        <option value="jp">japonais</option>
-    </select>
-    <input class="headBtn" id="btnChercher" type="button" value="chercher">
+    <form method="post" action="{:url('search')}">
+        <select class="headBtn" name="type">
+            <option value="learn">apprendre</option>
+            <option value="teach">enseigner</option>
+        </select>
+        <select class="headBtn" name="language">
+            <option value="en">anglais</option>
+            <option value="cn">chinois</option>
+            <option value="fr">français</option>
+            <option value="de">allemand</option>
+            <option value="sp">espagnol</option>
+            <option value="pt">portugal</option>
+            <option value="jp">japonais</option>
+        </select>
+        <input class="headBtn" id="btnChercher" type="submit" value="chercher">
+    </form>
+
 </div>
 
 <div id="headerDivImage">
