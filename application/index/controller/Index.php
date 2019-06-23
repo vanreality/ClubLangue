@@ -25,8 +25,4 @@ class Index extends Controller
         $res = User::get(1)->toArray();
         return dump($res);
     }
-
-    public function test() {
-        
-    }
 }
