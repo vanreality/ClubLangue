@@ -18,17 +18,9 @@ html, body{
     font-size: 10px;
 }
 
-#returnHome{
-    color: #f3f3f3; font-size: 25px;
-    font-weight: bold;
-    float: left;
-    padding-left: 2%;
-    height: 100%;width: 5%;
-    margin-top: 1.2%;
-}
-
 #headerDivCher{
-    height: 100%;width: 50%;
+    height: 100%;
+    width: 60%;
     float: left;
     text-align: center;
     margin-top: 2%;
@@ -143,6 +135,60 @@ html, body{
     border-radius: 15px;
 }
 
+#loginBody{
+    background-color:#f3f3f3;
+    width:100%;
+    height:60%;
+    margin-top:20%;
+    color:#5c81a4;
+    padding-top: 25%;
+    padding-bottom:30%;
+}
+#loginBody h1{
+    margin-left:10%;
+}
+#loginBody a{
+    color:#5c81a4;
+}
+#loginForm {
+    background-color:#f3f3f3;
+    text-align: left;
+    font-size:20px;
+    height: 80%;
+    width: 100%;
+    margin-bottom: 0;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 40%;
+}
+#loginForm input{
+    border: 3px solid #5c81a4 ;
+    border-radius: 5px;
+    background-color:#f3f3f3;
+    width:40%;
+    height:10%;
+    margin-top:10px;
+}
+#loginForm p{
+    margin-left:10%;
+}
+#connectBtn{
+    width: 30%;
+    height: 20%;
+    margin-top:20px;
+    margin-left:0.25%;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    color: #5c81a4;
+}
+#oublieLogin{
+    margin-top:30px;
+
+}
+
+
 #profileBody{
     background-color: #f3f3f3;
     width:100%;
@@ -171,100 +217,11 @@ html, body{
     height:10%;
     margin-top:30px;
     font-size:80%;
-
-
 }
 
-#mainLogin{
-    width: 100%;
-    height: 70%;
-    padding-top: 10%;
-}
-#connexText{
-    padding-left: 5%;
-    color: #5c81a4;
-    font-size: 25px;
-    width: 100%;
-    height: 20%;
-}
-#connexion{
-    text-align: center;
-    color: #5c81a4;
-    font-size: 20px;
-    width: 40%;
-    height: 80%;
-    padding-left: 30%;
-    padding-right: 30%;
-
-}
-
-#toInscription{
-    text-decoration: underline;
-}
-#toMdp{
-    text-decoration: underline;
-}
-.inputLogin{
-    height: 10%;
-    width: 90%;
-    border: 1px solid #5c81a4;
-    border-radius: 15px;
-
-}
-
-#btnConnex{
-    margin-top: 35px;
-    height: 7%;
-    width: 30%;
-    border: 1px solid #5c81a4;
-    border-radius: 15px;
-    color: #5c81a4;
-    padding-bottom: 10px;
-}
-
-#mainSignup{
-    width: 100%;
-    height: 70%;
-    padding-top: 10%;
-}
-#signupText{
-    color: #5c81a4;
-    font-size: 25px;
-    width: 100%;
-    height: 8%;
-    text-align: center;
-}
-#createAccount{
-    text-align: center;
-    color: #5c81a4;
-    font-size: 20px;
-    width: 40%;
-    height: 80%;
-    padding-left: 30%;
-    padding-right: 30%;
-
-}
+#calendar{
+    width:900px;
+    margin:20px auto 10px auto;
 
 
-.inputSignup{
-    height: 10%;
-    width: 90%;
-    border: 1px solid #5c81a4;
-    border-radius: 15px;
-
-}
-
-#btnCreate{
-    margin-top: 35px;
-    height: 7%;
-    width: 30%;
-    border: 1px solid #5c81a4;
-    border-radius: 15px;
-    color: #5c81a4;
-    padding-bottom: 10px;
-}
-
-.signupInfo{
-    text-align: left;
-    margin-left: 5%;
 }
