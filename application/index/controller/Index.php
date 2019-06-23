@@ -68,4 +68,8 @@ class Index extends Controller
            return $this->fetch();
     }
 
+    public function signup()
+    {
+        return $this->fetch();
+    }
 }
