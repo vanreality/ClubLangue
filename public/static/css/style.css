@@ -7,35 +7,39 @@ html, body{
 }
 
 .start{
-    width: 100%;height: 50px;
+    width: 100%;height: 7%;
     background-color:#5c81a4;
     position: fixed;
-    top:0;
+    order: 1;
+    z-index: 20;
 }
 
 #returnHome{
-    color: #f3f3f3; font-size: 30px;
+    color: #f3f3f3; font-size: 165%;
     font-weight: bold;
     float: left;
-    padding-left: 15px;
-    height: 50px;width: 100px;
-    margin-top: 2px;
+    padding-left: 2%;
+    height: 100%;width: 13%;
+    margin-top: 0.4%;
 }
 
 #headerDivCher{
-    height: 50px;width: 600px;
+    height:100%;width: 40%;
     float: left;
     text-align: center;
+    position: relative;
 }
 
 #headerDivImage{
-    height: 50px;width: 300px;
+    height: 100%;width:30%;
     float: right;
-    padding-right: 24px;
+    padding-right: 2%;
+    position: relative;
 }
 
 .container{
     width: 100%;height: 100%;
+    padding-top: 46px;
 }
 
 .section{
@@ -46,7 +50,8 @@ html, body{
 #mainSection{background-color: #75c4c6;}
 #divideSection1{background-color: #ecd5d4;}
 #divideSection2{background-color: #f3f3f3;}
-.headerImg{height: 45px; width: 50px;float: right;margin-top:2px;}
+.headerImg{height: 90%; width: 14%;float: right;margin-top:2px;position: relative;}
+
 #sectionTextLeft{
     text-align: center;
     height: 40%;width:45%;
@@ -68,7 +73,7 @@ html, body{
     float: right;
     margin-right: 10%;
     color: #ecd5d4;
-    font-size: 35px;
+    font-size: 2em;
     border-radius: 15px;
 }
 
@@ -78,7 +83,7 @@ html, body{
     float: left;
     margin-left: 10%;
     color: #f3f3f3;
-    font-size: 35px;
+    font-size: 2em;
     border-radius: 15px;
 }
 
@@ -88,10 +93,9 @@ html, body{
     height: 20%;
     color: #f3f3f3;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 3.3em;
     text-align: center;
     padding-top: 10%;
-
     padding-left: 20%;
 
 }
@@ -106,7 +110,7 @@ html, body{
 }
 
 .iconImage{
-    width: 150px;height: 150px;
+    width: 60%;height: 60%;
 }
 
 #mainBtnApprend{
@@ -115,7 +119,7 @@ html, body{
     float: right;
     margin-right: 10%;
     color: #75c4c6;
-    font-size: 35px;
+    font-size: 2em;
     border-radius: 15px;
 }
 #mainBtnEnsei{
@@ -124,20 +128,20 @@ html, body{
     float: left;
     margin-left: 10%;
     color: #75c4c6;
-    font-size: 35px;
+    font-size: 2em;
     border-radius: 15px;
 }
 #iconLeft{float: left;}
 #iconRight{float: right;}
 
 .headBtn{
-    width: 120px;
-    height: 40px;
+    width: 25%;
+    height: 80%;
     border-radius: 15px;
     background-color: #5c81a4;
     color: #f3f3f3;
-    margin-top:5px;
-    font-size: 19px;
+    margin-top:1%;
+    font-size: 110%;
     border: none;
 }
 #profileBody{
@@ -175,12 +179,13 @@ html, body{
 #mainLogin{
     width: 100%;
     height: 70%;
-    padding-top: 10%;
+    padding-top: 5%;
 }
+
 #connexText{
-    padding-left: 5%;
+    text-indent: 10%;
     color: #5c81a4;
-    font-size: 25px;
+    font-size: 20px;
     width: 100%;
     height: 20%;
 }
@@ -233,21 +238,23 @@ html, body{
 #mainSignup{
     width: 100%;
     height: 70%;
-    padding-top: 10%;
 }
 #signupText{
     color: #5c81a4;
-    font-size: 25px;
+    font-size: 20px;
     width: 100%;
-    height: 8%;
-    text-align: center;
+    height: 9%;
+    margin:0;
+    padding-top: 5%;
+    text-indent: 10%;
 }
+
 #createAccount{
     text-align: center;
     color: #5c81a4;
-    font-size: 20px;
+    font-size: 16px;
     width: 40%;
-    height: 80%;
+    height: 65%;
     padding-left: 30%;
     padding-right: 30%;
 

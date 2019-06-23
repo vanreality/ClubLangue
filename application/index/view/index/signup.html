@@ -4,7 +4,10 @@
 
 <main id="mainSignup">
     <div id="signupText">
-        <span>Créer votre compte et nous joindre chez ClubLangue</span>
+       <span>Créer votre compte et nous joindre chez ClubLangue</span>
+        <a href="{:url('signin')}">
+            <span id="toConnection">Déjà avoir un compte?</span>
+        </a>
     </div>
 
     <form id="createAccount" method="post" action="{:url('signup_check')}">
