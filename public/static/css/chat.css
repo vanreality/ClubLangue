@@ -27,19 +27,20 @@ body {
 
 .wrapper {
     position: relative;
+    top: 10%;
     left: 50%;
-    width: var(--wrapper);
+    width: 100%;
     height: 800px;
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
 }
 
 .container {
-    position: relative;
+    position: fixed;
     top: 50%;
     left: 50%;
-    width: 80%;
-    height: 75%;
+    width: 100%;
+    height: 100%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
@@ -266,7 +267,7 @@ body {
 .container .right .write input {
     font-size: 16px;
     float: left;
-    width: 347px;
+    width: calc(100% - 88px);
     height: 40px;
     padding: 0 10px;
     color: var(--dark);
