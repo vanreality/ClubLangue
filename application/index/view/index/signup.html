@@ -2,9 +2,12 @@
 
 {block name="container"}
 
-<main id="mainSignup">
+<div id="mainSignup">
     <div id="signupText">
-        <span>Créer votre compte et nous joindre chez ClubLangue</span>
+       <span>Créer votre compte et nous joindre chez ClubLangue</span>
+        <a href="{:url('signin')}">
+            <span id="toConnection">Déjà avoir un compte?</span>
+        </a>
     </div>
 
     <form id="createAccount" method="post" action="{:url('signup_check')}">
@@ -18,7 +21,7 @@
         <input class="inputCase" type="password" name="password_check">
         <input id="btnCreate" type="submit" value="créer votre compte">
     </form>
-</main>
+</div>
 
 {/block}
 
