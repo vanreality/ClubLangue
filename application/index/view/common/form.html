@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+
+    <link href='__STATIC__/fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='__STATIC__/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+
+    <script src='__STATIC__/fullcalendar/packages/core/main.js'></script>
+    <script src='__STATIC__/fullcalendar/packages/daygrid/main.js'></script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'dayGrid' ]
+            });
+
+            calendar.render();
+        });
+
+    </script>
+</head>
+<body>
+
+<div id='calendar'></div>
+
+</body>
+</html>
