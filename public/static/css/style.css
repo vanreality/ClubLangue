@@ -286,3 +286,34 @@ html, body{
     text-align: left;
     margin-left: 5%;
 }
+
+#alertEmailVide{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertEmailNonValid{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertNameShort{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertPassLength{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertCheckPass{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+

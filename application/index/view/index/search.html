@@ -1,6 +1,19 @@
 {extend name="common/base" /}
 
+{block name="container"}
 
+{php}
+foreach($users as $val) {
+
+    echo('<div class="searchInfo">');
+    echo $val["email"];
+    echo $val["username"];
+    echo $val["description"];
+    echo('</div>');
+}
+{/php}
+
+{/block}
 
 {block name="footer"}
 {include file="common/footer" /}
