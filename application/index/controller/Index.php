@@ -13,6 +13,14 @@ class Index extends Controller
         return $this->fetch();
     }
 
+    public function signin(){
+        
+    }
+
+
+
+    //test
+
     public function search()
     {
         return $this->fetch();
@@ -25,6 +33,7 @@ class Index extends Controller
         $res = User::get(1)->toArray();
         return dump($res);
     }
+
     public function connexion()
         {
             return $this->fetch();
