@@ -30,7 +30,7 @@ body {
     top: 10%;
     left: 50%;
     width: 100%;
-    height: 800px;
+    height: 90%;
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
 }
