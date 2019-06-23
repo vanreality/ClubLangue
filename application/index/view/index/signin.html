@@ -5,7 +5,9 @@
     <main id="mainLogin">
     <div id="connexText">
         <span>Se connecter ou</span>
-        <span id="toInscription">Créer votre compte</span>
+        <a href="{:url('signup')}">
+            <span id="toInscription">Créer votre compte</span>
+        </a>
     </div>
 
     <form id="connexion" method="post" action="{:url('signin_check')}">

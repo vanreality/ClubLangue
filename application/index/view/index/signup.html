@@ -7,16 +7,16 @@
         <span>Créer votre compte et nous joindre chez ClubLangue</span>
     </div>
 
-    <form id="createAccount" method="POST">
+    <form id="createAccount" method="post" action="{:url('signup_check')}">
         <p class="signupInfo">Adresse email</p>
-        <input class="inputSignup" type="text">
+        <input class="inputSignup" type="text" name="email">
         <p class="signupInfo">Votre pseudo</p>
-        <input class="inputSignup" type="text">
+        <input class="inputSignup" type="text" name="username">
         <p class="signupInfo">Votre mot de passe</p>
-        <input class="inputSignup" type="password">
+        <input class="inputSignup" type="password" name="password">
         <p class="signupInfo">Confirmer votre mot de passe</p>
-        <input class="inputSignup" type="password">
-        <input id="btnCreate" type="button" value="créer votre compte">
+        <input class="inputSignup" type="password" name="password_check">
+        <input id="btnCreate" type="submit" value="créer votre compte">
     </form>
 </main>
 
