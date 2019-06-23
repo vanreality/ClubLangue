@@ -18,8 +18,17 @@ html, body{
     font-size: 10px;
 }
 
+#returnHome{
+    color: #f3f3f3; font-size: 25px;
+    font-weight: bold;
+    float: left;
+    padding-left: 2%;
+    height: 100%;width: 5%;
+    margin-top: 1.2%;
+}
+
 #headerDivCher{
-    height: 100%;width: 60%;
+    height: 100%;width: 50%;
     float: left;
     text-align: center;
     margin-top: 2%;
