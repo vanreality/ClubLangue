@@ -1,0 +1,72 @@
+{extend name="common/base" /}
+
+{block name="container"}
+
+<head>
+    <link href="__CSS__/chat.css" rel="stylesheet" type="text/css">
+    <link href="__CSS__/reset.min.css" rel="stylesheet" type="text/css">
+    <script src="__JS__/index.js"></script>
+
+</head>
+
+
+<div class="wrapper">
+    <div class="container">
+        <div class="left">
+            <div class="top">
+                <input type="text" placeholder="Search" />
+                <a href="javascript:;" class="search"></a>
+            </div>
+            <ul class="people">
+                <li class="person active" data-chat="person1">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" alt="" />
+                    <span class="name">Thomas Bangalter</span>
+                    <span class="time">2:09 PM</span>
+                    <span class="preview">I was wondering...</span>
+                </li>
+                <li class="person" data-chat="person2">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/dog.png" alt="" />
+                    <span class="name">Dog Woofson</span>
+                    <span class="time">1:44 PM</span>
+                    <span class="preview">I've forgotten how it felt before</span>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="right">
+            <div class="top"><span>To: <span class="name">Name of user</span></span></div>
+            <div class="chat active-chat" data-chat="person1">
+                <div class="conversation-start">
+                    <span>Today, 6:48 AM</span>
+                </div>
+                <div class="bubble you">
+                    Hello,
+                </div>
+                <div class="bubble you">
+                    it's me.
+                </div>
+                <div class="bubble you">
+                    I was wondering...
+                </div>
+            </div>
+
+            <div class="write">
+                <a href="javascript:;" class="write-link attach"></a>
+                <input type="text" />
+                <a href="javascript:;" class="write-link smiley"></a>
+                <a href="javascript:;" class="write-link send"></a>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+{/block}
+
+
+
+{block name="footer"}
+
+{/block}
