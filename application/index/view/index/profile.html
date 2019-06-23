@@ -5,15 +5,12 @@
 <div id="profileBody">
 
     <h1>votre profile</h1><br />
-<form id="profileForm">
 
-    <input class="inputCase" type="submit" name="desc"  value="description "/><br />
-    <br />
-    <input class="inputCase" type="submit" name="modification " value ="modifier  votre mot de passe"/><br />
-    <br />
-    <input class="inputCase" type="submit" name="deconnect" value="Se déconnecter"/><br />
-    <br />
-</form>
+    <button name="description">Modifier votre description</button>
+    <button name="modification">Modifier votre mot de passe</button>
+    <a href="{:url('signout')}">
+        <button name="disconnenct">Se déconnecter</button>
+    </a>
 </div>
 {/block}
 
