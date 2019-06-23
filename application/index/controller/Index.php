@@ -18,6 +18,7 @@ class Index extends Controller
         return $this->fetch();
     }
 
+
     public function info() {
 //        $res = Db::query("select * from user");
 //        $res = Db::connect();
@@ -33,6 +34,12 @@ class Index extends Controller
        {
            return $this->fetch();
        }
+
+
+    public function chat()
+    {
+           return $this->fetch();
+    }
 
 
 
