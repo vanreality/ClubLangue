@@ -1,12 +1,11 @@
 {extend name="common/base" /}
 
+{block name="head"}
+<link href="__CSS__/chat.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/reset.min.css" rel="stylesheet" type="text/css">
+{/block}
+
 {block name="container"}
-
-<head>
-    <link href="__CSS__/chat.css" rel="stylesheet" type="text/css">
-    <link href="__CSS__/reset.min.css" rel="stylesheet" type="text/css">
-</head>
-
 
 <div class="wrapper">
     <div class="container">
@@ -85,8 +84,6 @@
 
 {/block}
 
-
-
-{block name="footer"}
-
+{block name="tail"}
+<script src="__JS__/chat.js"></script>
 {/block}

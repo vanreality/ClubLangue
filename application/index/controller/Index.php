@@ -116,5 +116,4 @@ class Index extends Controller
     public function message(){
            return $this->fetch();
     }
-
 }
