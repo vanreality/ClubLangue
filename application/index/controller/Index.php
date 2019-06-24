@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 
+use app\index\model\Conversation;
 use app\index\model\User;
 use think\Request;
 use think\Db;
@@ -83,6 +84,7 @@ class Index extends Controller
             //TODO 修改提醒信息
             $this->error('该用户名已经存在，请换一个重试！');
         }
+
         $data = [
             'email'    => $email,
             'username' => $username,
@@ -113,8 +115,92 @@ class Index extends Controller
         }
     }
 
-    public function message(){
-           return $this->fetch();
+    public function info() {
+//        $res = Db::query("select * from user");
+//        $res = Db::connect();
+//        $res = Db::table("user")->select();
+//        $res = User::get(1)->toArray();
+//        return dump($res);
+
+        $conv = (new \app\index\model\Conversation)->getConv(1);
+        $mes = array();
+        $content = array();
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            array_push($mes,(new \app\index\model\Message)->getMes($cov_id));
+        }
+
+        foreach ($mes as $message){
+            array_push($content, $message->content);
+        }
+
+        return dump($content);
     }
+
+
+    public function message(){
+//        if(!session('userinfo')){
+//            $user = session('userinfo');
+//            $id =  $user['id'];
+//            $cov = (new \app\index\model\Conversation())->getConv($id);
+//        }
+
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+
+        $mes = array();
+
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+
+        /** person pour enregistrer les messages envoye **/
+        $content = array();
+
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            $ref = $val->ref_id;
+
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+            array_push($person, $per);
+
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            array_push($mes,(new \app\index\model\Message)->getMes($cov_id));
+        }
+
+        $this->assign("persons",$person);
+        $this->assign("mess",$mes);
+        return $this->fetch();
+    }
+
+    public function upMessage(){
+        $id = trim(input('id'));
+        $message = trim(input('mes'));
+        $speaker = trim(input('personne'));
+        $id = trim(input('id'));
+        $user = trim(input('user'));
+        $ref = trim(input('persone'));
+        $status = trim(input('id'));
+
+        $data = [
+            'id'    => $id,
+            'user' => $user,
+            'ref' => $ref,
+            'status' => $status
+        ];
+
+        $status = (new \app\index\model\Message) -> insert($data);
+        if ($status == 1) {
+            //TODO 修改提醒信息
+            $this->success('Votre message est bien enregistre');
+        }else{
+            //TODO 修改提醒信息
+            $this->error('Veuillez renvoyer');
+        }
+
+    }
+
 
 }

@@ -196,6 +196,7 @@
 .container .right .chat.active-chat .bubble {
     transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
 }
+
 .container .right .chat.active-chat .bubble:nth-of-type(1) {
     -webkit-animation-duration: 0.15s;
     animation-duration: 0.15s;
@@ -301,6 +302,7 @@
     vertical-align: top;
     border-radius: 5px;
 }
+
 .container .right .bubble:before {
     position: absolute;
     top: 19px;
