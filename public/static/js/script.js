@@ -1,3 +1,7 @@
+
+
+
+
 function toSection1(){
     window.location.hash = "#divideSection1";
 }

@@ -5,14 +5,16 @@
     <main id="mainLogin">
     <div id="connexText">
         <span>Se connecter ou</span>
-        <span id="toInscription">Créer votre compte</span>
+        <a href="{:url('signup')}">
+            <span id="toInscription">Créer votre compte</span>
+        </a>
     </div>
 
     <form id="connexion" method="post" action="{:url('signin_check')}">
         <p class="signupInfo">Adresse email</p>
-        <input class="inputLogin" type="text" name="email">
+        <input class="inputCase" type="text" name="email">
         <p class="signupInfo">Mot de passe</p>
-        <input class="inputLogin" type="password" name="password">
+        <input class="inputCase" type="password" name="password">
         <input id="btnConnex" type="submit" value="se connecter">
         <p id="toMdp">Oubliez votre mot de passe?</p>
     </form>
