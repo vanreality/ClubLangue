@@ -8,10 +8,6 @@
     <script src="__JS__/jquery-3.4.1.min.js"></script>
 </head>
 
-
-
-
-
 <div class="wrapper">
     <div class="container">
         <div class="left">
@@ -42,16 +38,7 @@
                 }
                 {/php}
 
-
-                <li class="person active" data-chat="person3">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" alt="" />
-                    <span class="name">Thomas Bangalter</span>
-                    <span class="time">2:09 PM</span>
-                    <span class="preview">I was wondering...</span>
-                </li>
-
-
-                <li class="person" data-chat="person4">
+                <li class="person" data-chat="person3">
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/dog.png" alt="" />
                     <span class="name">Dog Woofson</span>
                     <span class="time">1:44 PM</span>
@@ -62,71 +49,7 @@
         </div>
 
         <div class="right">
-
-
             <div class="top"><span>To: <span class="name">  </span></span></div>
-
-            {php}
-            $div = '<div class="chat" data-chat="' . 'person' . $val["id"] . '">';
-            echo($div);
-            echo('<div class="conversation-start">');
-                echo("<span>");
-                    echo("");
-                echo("</span>");
-            echo('</div>');
-            echo("</div>");
-            {/php}
-
-
-
-
-            <div class="chat active-chat" data-chat="person3">
-                <div class="conversation-start">
-                    <span>Today, 6:48 AM</span>
-                </div>
-                <div class="bubble you">
-                    Hello,
-                </div>
-                <div class="bubble you">
-                    it's me.
-                </div>
-                <div class="bubble you">
-                    I was wondering...
-                </div>
-
-                {php}
-                foreach ($mess as $val){
-                echo('<div class="bubble you">');
-                echo($val["content"]);
-                echo('</div>');
-                }
-                {/php}
-            </div>
-
-
-            <div class="chat" data-chat="person4">
-                <div class="conversation-start">
-                    <span>Today, 5:38 PM</span>
-                </div>
-                <div class="bubble you">
-                    Hello, can you hear me?
-                </div>
-                <div class="bubble you">
-                    I'm in California dreaming
-                </div>
-                <div class="bubble me">
-                    ... about who we used to be.
-                </div>
-                <div class="bubble me">
-                    Are you serious?
-                </div>
-                <div class="bubble you">
-                    When we were younger and free...
-                </div>
-                <div class="bubble you">
-                    I've forgotten how it felt before
-                </div>
-            </div>
             <form class="write" method="post" action="{:url('signup_check')}">
                 <a href="javascript:allMessage();" class="write-link attach"></a>
                 <input name="message" type="text" />
@@ -141,7 +64,6 @@
 {/block}
 
 
-
-{block name="footer"}
-
+{block name="tail"}
+<script src="__JS__/chat.js"></script>
 {/block}
