@@ -113,18 +113,69 @@ class Index extends Controller
         }
     }
 
-        public function message(){
+     public function message(){
 //        if(!session('userinfo')){
 //            $user = session('userinfo');
 //            $id =  $user['id'];
 //            $cov = (new \app\index\model\Conversation())->getConv($id);
 //        }
         $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            $ref = $val->ref_id;
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+            array_push($person, $per);
+        }
+        $this->assign("persons",$person);
+
+        return $this->fetch();
+    }
+
+     public function info(){
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
         $mes = array();
         /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
         $person = array();
-        /** person pour enregistrer les messages envoye **/
+        /** content pour enregistrer les messages envoye **/
         $content = array();
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            echo($cov_id);
+            $ref = $val->ref_id;
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+            array_push($person, $per);
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $mes = (new \app\index\model\Message)->getMes($cov_id);
+        }
+        foreach($mes as $val){
+            echo($val->content);
+        }
+
+
+     }
+
+
+     public function getMessage(){
+//        if(!session('userinfo')){
+//            $user = session('userinfo');
+//            $id =  $user['id'];
+//            $cov = (new \app\index\model\Conversation())->getConv($id);
+//        }
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+        $mes = array();
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+        /** content pour enregistrer les messages envoye **/
+        $content = array();
+
         foreach($conv as $val){
             $cov_id = $val->id;
             $ref = $val->ref_id;
@@ -132,34 +183,43 @@ class Index extends Controller
             $per = User::get($ref)->toArray();
             array_push($person, $per);
             /** obtenir les infos des autres personnes dans la tableau user **/
-            array_push($mes,(new \app\index\model\Message)->getMes($cov_id));
+            $mes = (new \app\index\model\Message)->getMes($cov_id);
         }
-        $this->assign("persons",$person);
-        $this->assign("mess",$mes);
-        return $this->fetch();
+
+        return $mes;
     }
 
 
-
-
-    public function upMessage(){
-        $id = trim(input('id'));
-        $message = trim(input('mes'));
-        $speaker = trim(input('personne'));
-        $id = trim(input('id'));
+    public function createConv(){
         $user = trim(input('user'));
-        $ref = trim(input('persone'));
+        $ref = trim(input('ref'));
         $status = trim(input('id'));
         $data = [
-            'id'    => $id,
-            'user' => $user,
-            'ref' => $ref,
+            'user_id' => $user,
+            'ref_id' => $ref,
             'status' => $status
         ];
+
+        $status = (new \app\index\model\Conversation) -> insert($data);
+
+
+    }
+
+    public function upMessage(){
+        $speaker = trim(input('speaker'));
+        $cov_id = trim(input('cov_id'));
+        $content = trim(input('content'));
+
+        $data = [
+            'cov_id'    => $cov_id,
+            'content' => $content,
+            'speaker_id' => $speaker
+        ];
+
         $status = (new \app\index\model\Message) -> insert($data);
+
         if ($status == 1) {
-            //TODO 修改提醒信息
-            $this->success('Votre message est bien enregistre');
+
         }else{
             //TODO 修改提醒信息
             $this->error('Veuillez renvoyer');
