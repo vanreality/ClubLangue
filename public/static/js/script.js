@@ -1,7 +1,7 @@
 function toSection1(){
-    window.location.hash = "#divideSection1";
+    document.getElementById("divideSection1").scrollIntoView();
 }
 
 function toSection2(){
-    window.location.hash = "#divideSection2";
+    document.getElementById("divideSection2").scrollIntoView();
 }
