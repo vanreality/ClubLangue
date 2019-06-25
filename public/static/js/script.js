@@ -10,6 +10,7 @@ var pass1;
 var pass1Length;
 var pass2;
 var checkPass;
+var arrowScroll;
 
 
 function init() {
@@ -25,6 +26,8 @@ function init() {
     pass1Length = document.getElementById("alertPassLength");
     pass2 = document.getElementById("pass2Input");
     checkPass = document.getElementById("alertCheckPass");
+    arrowScroll = document.getElementById("mainSection");
+
 }
 
 function toSection1(){
@@ -91,4 +94,8 @@ function verifyPass() {
         pass2.style.border = "1px solid  #5c81a4";
         checkPass.style.display = "none";
     }
+}
+
+function toTop() {
+    arrowScroll.scrollIntoView();
 }

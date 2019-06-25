@@ -1,3 +1,4 @@
+/*main structure*/
 html, body{
     width: 100%;
     height: 100%;
@@ -20,6 +21,7 @@ html, body{
     margin-top:105.5%;
 }
 
+/*partie header*/
 #returnHome{
     color: #f3f3f3; font-size: 165%;
     font-weight: bold;
@@ -52,6 +54,7 @@ html, body{
     height: 100%;
 }
 
+/*partie main*/
 #mainSection{background-color: #75c4c6;}
 #divideSection1{background-color: #ecd5d4;}
 #divideSection2{background-color: #f3f3f3;}
@@ -67,7 +70,7 @@ html, body{
 #sectionTextRight{
     text-align: center;
     height: 40%;width:45%;
-    padding-top: 15%;padding-right: 5%;
+    padding-top: 16%;padding-right: 5%;
     float: right;
     color: #5c81a4;
 }
@@ -104,6 +107,7 @@ html, body{
     text-align: center;
     padding-top: 10%;
     padding-left: 20%;
+    clear: both;
 
 }
 #leftPart{
@@ -152,6 +156,22 @@ html, body{
     margin-top:2.5%;
     font-size: 110%;
     border: none;
+}
+
+.returnTop{
+    width: 10%;height: 10%;
+    padding-left: 90%;
+
+}
+
+#returnToTop1{
+    width: 100%;height: 100%;
+    padding-top: 80%;
+}
+
+#returnToTop2{
+    width: 100%;height: 100%;
+    padding-top: 10%;
 }
 
 /*partie profile.html*/
