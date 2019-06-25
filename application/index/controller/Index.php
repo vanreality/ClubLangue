@@ -150,17 +150,26 @@ class Index extends Controller
             $ref = $val->ref_id;
             /** obtenir les infos des autres personnes dans la tableau user **/
             $per = User::get($ref)->toArray();
+
             array_push($person, $per);
-            /** obtenir les infos des autres personnes dans la tableau user **/
-            $mes = (new \app\index\model\Message)->getMes($cov_id);
+            array_merge((new \app\index\model\Message)->getMes($cov_id), $mes);
         }
+
         foreach($mes as $val){
             echo($val->content);
         }
 
-
      }
 
+     public function getConversation(){
+//        if(!session('userinfo')){
+//            $user = session('userinfo');
+//            $id =  $user['id'];
+//            $cov = (new \app\index\model\Conversation())->getConv($id);
+//        }
+        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+        return $conv;
+    }
 
      public function getMessage(){
 //        if(!session('userinfo')){
@@ -183,10 +192,11 @@ class Index extends Controller
             $per = User::get($ref)->toArray();
             array_push($person, $per);
             /** obtenir les infos des autres personnes dans la tableau user **/
-            $mes = (new \app\index\model\Message)->getMes($cov_id);
+            $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
+            $content += $mes;
         }
 
-        return $mes;
+        return $content;
     }
 
 

@@ -14,53 +14,59 @@ var chat = {
 
 $(document).ready(function(){
 
-  var url = 'getMessage';
+  var urlM = 'getMessage';
+  var urlC = 'getConversation';
   var data = {
 
   };
 
-  $.get(url,data,function(data){
-    friends.all.forEach(function (f) {
+  $.get(urlC,data,function(data) {
+    for(i=0; i<data.length; i++) {
+      var id = data[i].ref_id;
+      var cov_id = data[i].id;
 
-      var name = f.querySelector('.name').innerText;
-      var id = f.getAttribute('data-chat');
+      console.log(id);
 
-      //TODO Il faut remplacer les cov_id par les data[]
-      var div = '<div class="chat" data-chat=' + id + ' ' + 'cov_id=' + 1 + '>';
+      var div = '<div class="chat" data-chat=' + id + ' ' + 'cov_id=' + cov_id + '>';
       $('.right .top').after(div);
+    }
+  });
 
-    });
 
+  $.get(urlM,data,function(data){
     allCov(data);
   });
 });
 
 function allCov(data){
-    var message ={
+    var conversation ={
       all: document.querySelectorAll('.right .chat'),
     };
 
-    message.all.forEach(function (m) {
-      var id = m.getAttribute('data-chat');   /** id est id de personne**/
-      var cov_id = m.getAttribute('cov_id'); /** id de conversation dans sql **/
-      for(i=0; i<data.length; i++){
-        var dCov_id = data[i].cov_id;
-        var dSpeakId = data[i].speaker_id;
-        if(dCov_id == cov_id && dSpeakId == id){
-            var time = $('<span>::before').html(data[i].time);   /** Indiquer la date du dernier message  **/
+    conversation.all.forEach(function (c) {
+      var id = c.getAttribute('data-chat');   /** id est id de personne**/
+      var cov_id = parseInt(c.getAttribute('cov_id')); /** id de conversation dans sql **/
+      for(i=0; i<data[cov_id].length; i++) {
+
+        var dataM = data[cov_id];
+        var dSpeakId = dataM[i].speaker_id;
+
+        if (dSpeakId == id) {
+            var time = $('<span>::before').html(dataM[i].time);
+            /** Indiquer la date du dernier message  **/
             var start = $('<div class="conversation-start">');
             start.append(time);
-            $(m).append(start);
-            var divM = $('<div class="bubble you">').html(data[i].content);
-            $(m).append(divM);
-        }
-        else{
-          var time = $('<span>::before').html(data[i].time);   /** Indiquer la date du dernier message  **/
-          var start = $('<div class="conversation-start">');
-          start.append(time);
-          $(m).append(start);
-          var divY = $('<div class="bubble me">').html(data[i].content);
-          $(m).append(divY);
+            $(c).append(start);
+            var divM = $('<div class="bubble you">').html(dataM[i].content);
+            $(c).append(divM);
+        } else {
+            var time = $('<span>::before').html(dataM[i].time);
+            /** Indiquer la date du dernier message  **/
+            var start = $('<div class="conversation-start">');
+            start.append(time);
+            $(c).append(start);
+            var divY = $('<div class="bubble me">').html(dataM[i].content);
+            $(c).append(divY);
         }
       }
     });
@@ -112,7 +118,7 @@ function sentMessage() {
   var mes = $("input[name=message]").val();
   var send = $("<div class='bubble me'>::before").html(mes);
   $(".active-chat").append(send);
-
+  $("input[name=message]").val('');
 
   var cov_id = document.querySelector('.active-chat').getAttribute('cov_id');
 
