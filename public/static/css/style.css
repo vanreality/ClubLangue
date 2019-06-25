@@ -4,6 +4,7 @@ html, body{
     margin: 0;
     padding: 0;
 
+
 }
 
 .start{
@@ -36,14 +37,24 @@ html, body{
 
 .container{
     width: 100%;height: 100%;
+
 }
 
 .section{
     width: 100%;
     height: 100%;
+
+
 }
 
-#mainSection{background-color: #75c4c6;}
+#mainSection{
+   background-color: #5c81a4;
+    background-image:url('../img/background.jpg');
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    z-index:-1;
+}
+
 #divideSection1{background-color: #ecd5d4;}
 #divideSection2{background-color: #f3f3f3;}
 .headerImg{height: 45px; width: 50px;float: right;margin-top:2px;}
