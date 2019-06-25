@@ -6,11 +6,13 @@ use think\Request;
 use think\Db;
 use think\Controller;
 use think\Session;
+use think\View;
 
 class Index extends Controller
 {
     public function index()
     {
+        dump((new \app\index\model\Calendar())->loadEvent());
         return $this->fetch();
     }
 
@@ -113,10 +115,20 @@ class Index extends Controller
         return dump($res);
     }
     public function calendar(){
+//        $res = Db::query("select * from events");
+//        dump(json_encode($res));
+       // View::share("load",(new \app\index\model\Calendar)->loadEvent());
+       // $this->assign("load",(new \app\index\model\Calendar)->loadEvent());
         return $this->fetch();
+
     }
 
-
+    public function load_Event(){
+        return (new \app\index\model\Calendar)->loadEvent();
+    }
+    public function insert_event(){
+        (new \app\index\model\Calendar)->insertEvent();
+    }
 
 
 }
