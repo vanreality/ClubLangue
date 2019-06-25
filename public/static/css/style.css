@@ -1,11 +1,11 @@
 /*main structure*/
+/*index.html*/
 html, body{
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-
 }
 
 .start{
@@ -18,7 +18,8 @@ html, body{
 .end{
     width: 100%;height:40%;
     background-color:#64baba;
-    margin-top:105.5%;
+    margin-top:115%;
+    margin-bottom: 0;
 }
 
 /*partie header*/
@@ -28,7 +29,7 @@ html, body{
     float: left;
     padding-left: 2%;
     height: 100%;width: 13%;
-    margin-top: 0.4%;
+    padding-top: 0.4%;
 }
 
 #headerDivCher{
@@ -57,8 +58,8 @@ html, body{
 /*partie main*/
 #mainSection{background-color: #75c4c6;}
 #divideSection1{background-color: #ecd5d4;}
-#divideSection2{background-color: #f3f3f3;}
-.headerImg{height: 90%; width: 14%;float: right;margin-top:2px;position: relative;}
+#divideSection2{background-color: #ffffff;}
+.headerImg{height: 90%; width: 14%;float: right;padding-top:2px;position: relative;}
 
 #sectionTextLeft{
     text-align: center;
@@ -70,7 +71,7 @@ html, body{
 #sectionTextRight{
     text-align: center;
     height: 40%;width:45%;
-    padding-top: 16%;padding-right: 5%;
+    margin-top: 23%;padding-right: 5%;
     float: right;
     color: #5c81a4;
 }
@@ -87,7 +88,7 @@ html, body{
 }
 
 #sectionBtnEnsei{
-    height: 10%;width: 30%;margin-top:20%;
+    height: 10%;width: 30%;margin-top:25%;
     background-color: #5c81a4;
     float: left;
     margin-left: 10%;
@@ -160,18 +161,18 @@ html, body{
 
 .returnTop{
     width: 10%;height: 10%;
-    padding-left: 90%;
+    margin-left: 90%;
 
 }
 
 #returnToTop1{
     width: 100%;height: 100%;
-    padding-top: 80%;
+    margin-top: 100%;
 }
 
 #returnToTop2{
     width: 100%;height: 100%;
-    padding-top: 10%;
+    margin-top: 10%;
 }
 
 /*partie profile.html*/
@@ -378,3 +379,46 @@ html, body{
     color: #f3f3f3;
 }
 
+/*search.html*/
+
+.searchInfo{
+    padding-top: 10%;
+    width: 100%;
+    height: 80%;
+    text-align: left;
+    display: inline-block;
+    font-size:15px;
+    color:#5c81a4;
+}
+
+#searchTable{
+    width: 60%;
+    height: 20%;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: left;
+    color:#5c81a4;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+table,tr,th,td{
+    border:1px solid #5c81a4;
+}
+
+#nom{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#emailAdress{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#selfIntro{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
