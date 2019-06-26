@@ -1,12 +1,13 @@
 {extend name="common/base" /}
 
 {block name="head"}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="__CSS__/chat.css" rel="stylesheet" type="text/css">
 <link href="__CSS__/reset.min.css" rel="stylesheet" type="text/css">
 {/block}
 
 {block name="container"}
-
+<main class="container">
 <div class="wrapper">
     <div class="container">
         <div class="left">
@@ -81,7 +82,7 @@
         </div>
     </div>
 </div>
-
+</main>
 {/block}
 
 {block name="tail"}

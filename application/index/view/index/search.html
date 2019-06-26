@@ -1,7 +1,7 @@
 {extend name="common/base" /}
 
 {block name="container"}
-
+<main class="container">
 {php}
 foreach($users as $val) {
 
@@ -12,9 +12,5 @@ foreach($users as $val) {
     echo('</div>');
 }
 {/php}
-
-{/block}
-
-{block name="footer"}
-{include file="common/footer" /}
+</main>
 {/block}
