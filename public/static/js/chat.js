@@ -11,28 +11,33 @@ var chat = {
   name: document.querySelector('.container .right .top .name'),
 };
 
+var id_user;
 
 $(document).ready(function(){
-  var urlP = 'getPerson';
   var urlM = 'getMessage';
   var urlC = 'getConversation';
   var data = {
-
   };
 
-  $.get(urlC,data,function(data) {
-    for(i=0; i<data.length; i++) {
-      var id = data[i].ref_id;
+ $.get(urlC,data,function(data) {
+    id_user = data[data.length-1];
+    for(i=0; i<data.length-1; i++) {
+      var idR = data[i].ref_id;
+      var idU = data[i].user_id;
       var cov_id = data[i].id;
-      var div = '<div class="chat" data-chat=' + id + ' ' + 'cov_id=' + cov_id + '>';
+      if(idR == id_user){
+          var div = '<div class="chat" data-chat=' + idU + ' ' + 'cov_id=' + cov_id + '>';
+      }else{
+          var div = '<div class="chat" data-chat=' + idR + ' ' + 'cov_id=' + cov_id + '>';
+      }
       $('.right .top').after(div);
     }
   });
 
-
   $.get(urlM,data,function(data){
     allCov(data);
   });
+
 });
 
 function allCov(data){
@@ -72,11 +77,11 @@ function allCov(data){
 
 friends.all.forEach(function (f) {
   f.addEventListener('mousedown', function () {
-    f.classList.contains('active') || setAciveChat(f);
+    f.classList.contains('active') || setActiveChat(f);
   });
 });
 
-function setAciveChat(f) {
+function setActiveChat(f) {
   if(friends.list.querySelector('.active')!=null){
     friends.list.querySelector('.active').classList.remove('active');
   }
@@ -90,7 +95,13 @@ function setAciveChat(f) {
     chat.current.classList.remove('active-chat');
   }
 
-  chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
+  var selectChat = chat.container.querySelector('[data-chat="' + chat.person + '"]');
+  if(selectChat!=null){
+      selectChat.classList.add('active-chat');
+  }
+  else{
+
+  }
 
   friends.name = f.querySelector('.name').innerText;
   chat.name.innerHTML = friends.name;
@@ -127,7 +138,7 @@ function sentMessage() {
   var data = {
       'cov_id' : cov_id,
       'content' : mes,
-      'speaker' : 1
+      'speaker' : id_user
   };
 
   $.get(url,data,function(data){
@@ -137,5 +148,4 @@ function sentMessage() {
 
 
 function urlMessage() {
-
 }
