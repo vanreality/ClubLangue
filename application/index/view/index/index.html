@@ -1,5 +1,12 @@
 {extend name="common/base" /}
 
+{block name="head"}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(init);
+</script>
+{/block}
+
 {block name="container"}
 <main class="container">
 <section class="section" id="mainSection">
@@ -7,6 +14,7 @@
         <p>Joignez-nous chez</p>
         <p>ClubLangue</p>
     </div>
+
 
     <div id="leftPart">
         <img id="iconLeft" class="iconImage" src="__STATIC__/img/iconLeft.svg" alt="iconLeft">
@@ -27,7 +35,9 @@
         <p>trouver votre tuteur de langue!</p>
     </div>
 
-    <input id="sectionBtnApprend" type="button" value="Je veux apprendre" />
+    <a href="{:url('index_btn')}">
+        <input id="sectionBtnApprend" type="button" value="Je veux apprendre" />
+    </a>
 
     <div class="returnTop">
         <img src="__STATIC__/img/arrow1.svg" alt="return to top" id="returnToTop1" onclick="toTop();">
@@ -41,7 +51,9 @@
         <p>trouver votre "étudiant"!</p>
     </div>
 
-    <input id="sectionBtnEnsei" type="button" value="Je veux enseigner" />
+    <a href="{:url('index_btn')}">
+        <input id="sectionBtnEnsei" type="button" value="Je veux enseigner" />
+    </a>
 
     <div class="returnTop">
         <img src="__STATIC__/img/arrow2.svg" alt="return to top" id="returnToTop2" onclick="toTop();">

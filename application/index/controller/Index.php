@@ -6,12 +6,21 @@ use think\Request;
 use think\Db;
 use think\Controller;
 use think\Session;
+use think\View;
 
 class Index extends Controller
 {
     public function index()
     {
         return $this->fetch();
+    }
+
+    public function index_btn(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch('calendar');
+        }
     }
 
     public function signin(){
@@ -113,7 +122,36 @@ class Index extends Controller
         }
     }
 
+    public function calendar(){
+//        $res = Db::query("select * from events");
+//        dump(json_encode($res));
+       // View::share("load",(new \app\index\model\Calendar)->loadEvent());
+       // $this->assign("load",(new \app\index\model\Calendar)->loadEvent());
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch();
+        }
+    }
+
     public function message(){
-           return $this->fetch();
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch();
+        }
+    }
+
+    public function load_Event(){
+        return (new \app\index\model\Calendar)->loadEvent();
+    }
+
+    public function insert_event(){
+        (new \app\index\model\Calendar)->insertEvent();
+    }
+
+    public function drag_insert_event($time){
+        //TODO ajax传的参数目前只写了time，需要添加其他参数
+        (new \app\index\model\Calendar)->dragInsertEvent($time);
     }
 }
