@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var containerEl = document.getElementById('external-events');
     var calendarEl = document.getElementById('calendar');
 
+    var CALENDAR = "Calendar";
+
     // initialize the external events
     // -----------------------------------------------------------------
 
@@ -22,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         header: {
             left: 'dayGridMonth,timeGridWeek', // buttons for switching between views
-            center: 'addButton'
         },
         plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
         defaultView: 'timeGridWeek',
@@ -40,34 +41,36 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable:true,
         selectHelper:true,
         droppable:true,
-        select: function(start, end)
+
+        select: function(info)
         {
-            alert("selected"+ start + end);
+            //TODO select 与 drag方法类似
+            alert('selected ' + info.startStr + ' to ' + info.endStr);
         },
 
         drop: function(info) {
-            //TODO add data to the database
-        },
+            //TODO console.log可以看到info所包括的内容，其中有所拖拽块的相关信息，可以传给数据库，user信息在session里
+            console.log(info);
 
-        customButtons: {
-            addButton: {
-                text: 'add event...',
-                click: function() {
-                    // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                    // var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-                    //
-                    // if (!isNaN(date.valueOf())) { // valid?
-                    //     calendar.addEvent({
-                    //         title: 'dynamic event',
-                    //         start: date,
-                    //         allDay: true
-                    //     });
-                    //     alert('Great. Now, update your database...');
-                    // } else {
-                    //     alert('Invalid date.');
-                    // }
+            var time = info.dateStr.replace(/T/, " ");
+            time = time.substr(0, 19);
+            $.ajax({
+                url:"drag_insert_event",
+                type:"POST",
+                data:{
+                    time: time,
+                    // uid: uid,
+                    // language: lan,
+                    // type: type
+                },
+                error:function(){
+                    alert("error");
+                },
+                success:function()
+                {
+                    alert("Added Successfully");
                 }
-            }
+            })
         },
     });
 

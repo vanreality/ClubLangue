@@ -149,4 +149,9 @@ class Index extends Controller
     public function insert_event(){
         (new \app\index\model\Calendar)->insertEvent();
     }
+
+    public function drag_insert_event($time){
+        //TODO ajax传的参数目前只写了time，需要添加其他参数
+        (new \app\index\model\Calendar)->dragInsertEvent($time);
+    }
 }

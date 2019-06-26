@@ -31,7 +31,17 @@ class Calendar extends Model
             );
         }
         View::share("load",json_encode($data));
-         return json_encode($res);
+
+        return json_encode($res);
     }
 
+    public function dragInsertEvent($time){
+        $data = [
+            'user_id'   => 3,
+            'time'      => $time,
+            'language'  => "en",
+            'type'      => 0
+        ];
+        Calendar::insert($data);
+    }
 }
