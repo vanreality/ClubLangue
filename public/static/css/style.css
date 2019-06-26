@@ -237,7 +237,7 @@ html, body{
 #toMdp{
     text-decoration: underline;
 }
-.inputCase{
+.inputCase {
     height: 10%;
     width: 90%;
     border: 1px solid #5c81a4;
@@ -245,9 +245,11 @@ html, body{
     font-size: 25px;
     outline: medium;
     text-indent: 20px;
-
 }
-
+#calendar {
+    width: 900px;
+    margin: 20px auto 10px auto;
+}
 #btnConnex{
     margin-top: 35px;
     height: 10%;
@@ -421,4 +423,26 @@ table,tr,th,td{
 #selfIntro{
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+#external-events {
+    position: fixed;
+    z-index: 2;
+    top: 100px;
+    left: 20px;
+    width: 150px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+
+#external-events .fc-event {
+    margin: 1em 0;
+    cursor: move;
+}
+
+#calendar-container {
+    position: relative;
+    z-index: 1;
+    margin-left: 200px;
 }

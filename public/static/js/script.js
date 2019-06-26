@@ -69,7 +69,7 @@ function checkUserName() {
         pseudo.style.border = "1px solid  #5c81a4";
         nameShort.style.display = "none";
     }
-    
+
 }
 
 function checkPass1() {
