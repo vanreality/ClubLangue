@@ -75,11 +75,11 @@ function allCov(data){
 
 friends.all.forEach(function (f) {
   f.addEventListener('mousedown', function () {
-    f.classList.contains('active') || setAciveChat(f);
+    f.classList.contains('active') || setActiveChat(f);
   });
 });
 
-function setAciveChat(f) {
+function setActiveChat(f) {
   if(friends.list.querySelector('.active')!=null){
     friends.list.querySelector('.active').classList.remove('active');
   }

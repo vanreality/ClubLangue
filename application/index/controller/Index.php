@@ -6,12 +6,21 @@ use think\Request;
 use think\Db;
 use think\Controller;
 use think\Session;
+use think\View;
 
 class Index extends Controller
 {
     public function index()
     {
         return $this->fetch();
+    }
+
+    public function index_btn(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch('calendar');
+        }
     }
 
     public function signin(){
@@ -98,6 +107,16 @@ class Index extends Controller
         }
     }
 
+    public function calendar(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch();
+        }
+    }
+
+    // Part Search
+
     public function search() {
         if (!session('?userinfo')) {
             return $this->fetch('signin');
@@ -113,13 +132,20 @@ class Index extends Controller
         }
     }
 
-     public function message(){
-//        if(!session('userinfo')){
-//            $user = session('userinfo');
-//            $id =  $user['id'];
-//            $cov = (new \app\index\model\Conversation())->getConv($id);
-//        }
-        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+    public function search_to_chat() {
+
+    }
+
+    // Part Message
+
+    public function message(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
         /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
         $person = array();
 
@@ -135,8 +161,7 @@ class Index extends Controller
         return $this->fetch();
     }
 
-     public function info(){
-
+    public function info(){
         $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
         $mes = array();
         /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
@@ -158,47 +183,46 @@ class Index extends Controller
         foreach($mes as $val){
             echo($val->content);
         }
+    }
 
-     }
+    public function getConversation(){
+        if (!session('?userinfo')) {
+            return null;
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
 
-     public function getConversation(){
-//        if(!session('userinfo')){
-//            $user = session('userinfo');
-//            $id =  $user['id'];
-//            $cov = (new \app\index\model\Conversation())->getConv($id);
-//        }
-        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
         return $conv;
     }
 
-     public function getMessage(){
-//        if(!session('userinfo')){
-//            $user = session('userinfo');
-//            $id =  $user['id'];
-//            $cov = (new \app\index\model\Conversation())->getConv($id);
-//        }
-
-        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
-        $mes = array();
-        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
-        $person = array();
-        /** content pour enregistrer les messages envoye **/
-        $content = array();
-
-        foreach($conv as $val){
-            $cov_id = $val->id;
-            $ref = $val->ref_id;
-            /** obtenir les infos des autres personnes dans la tableau user **/
-            $per = User::get($ref)->toArray();
-            array_push($person, $per);
-            /** obtenir les infos des autres personnes dans la tableau user **/
-            $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
-            $content += $mes;
+    public function getMessage(){
+        if (!session('?userinfo')) {
+            return null;
         }
+        $user = session('userinfo');
+        $id =  $user['id'];
 
-        return $content;
+    $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+    $mes = array();
+    /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+    $person = array();
+    /** content pour enregistrer les messages envoye **/
+    $content = array();
+
+    foreach($conv as $val){
+        $cov_id = $val->id;
+        $ref = $val->ref_id;
+        /** obtenir les infos des autres personnes dans la tableau user **/
+        $per = User::get($ref)->toArray();
+        array_push($person, $per);
+        /** obtenir les infos des autres personnes dans la tableau user **/
+        $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
+        $content += $mes;
     }
 
+    return $content;
+    }
 
     public function createConv(){
         $user = trim(input('user'));
@@ -211,8 +235,6 @@ class Index extends Controller
         ];
 
         $status = (new \app\index\model\Conversation) -> insert($data);
-
-
     }
 
     public function upMessage(){
@@ -236,4 +258,18 @@ class Index extends Controller
         }
     }
 
+    // Part Calendar
+
+    public function load_Event(){
+        return (new \app\index\model\Calendar)->loadEvent();
+    }
+
+    public function insert_event(){
+        (new \app\index\model\Calendar)->insertEvent();
+    }
+
+    public function drag_insert_event($time){
+        //TODO ajax传的参数目前只写了time，需要添加其他参数
+        (new \app\index\model\Calendar)->dragInsertEvent($time);
+    }
 }
