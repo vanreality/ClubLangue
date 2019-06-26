@@ -12,8 +12,15 @@ class Index extends Controller
 {
     public function index()
     {
-        dump((new \app\index\model\Calendar())->loadEvent());
         return $this->fetch();
+    }
+
+    public function index_btn(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch('calendar');
+        }
     }
 
     public function signin(){
@@ -100,35 +107,46 @@ class Index extends Controller
         }
     }
 
-    //temp
+    public function search() {
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            $type = trim(input("type"));
+            $language = trim(input("language"));
 
-    public function search()
-    {
-        return $this->fetch();
+            //TODO 根据类型和语言查询数据库
+
+            $users = User::all();
+            $this->assign("users", $users);
+            return $this->fetch();
+        }
     }
 
-    public function info() {
-//        $res = Db::query("select * from user");
-//        $res = Db::connect();
-//        $res = Db::table("user")->select();
-        $res = User::get(1)->toArray();
-        return dump($res);
-    }
     public function calendar(){
 //        $res = Db::query("select * from events");
 //        dump(json_encode($res));
        // View::share("load",(new \app\index\model\Calendar)->loadEvent());
        // $this->assign("load",(new \app\index\model\Calendar)->loadEvent());
-        return $this->fetch();
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch();
+        }
+    }
 
+    public function message(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch();
+        }
     }
 
     public function load_Event(){
         return (new \app\index\model\Calendar)->loadEvent();
     }
+
     public function insert_event(){
         (new \app\index\model\Calendar)->insertEvent();
     }
-
-
 }

@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
     <title>Club Langue</title>
     <link href="__CSS__/style.css" rel="stylesheet" type="text/css">
 
     <script src="__JS__/script.js"></script>
+    {block name="head"}{/block}
 </head>
 
 <body>
 
-    <header class="start">
-        {include file="common/header" /}
-    </header>
+{include file="common/header" /}
 
-    <main class="container">
-        {block name="container"}{/block}
-    </main>
+{block name="container"}{/block}
 
-    <footer class="footer">
-        {block name="footer"}{/block}
-    </footer>
+{block name="footer"}{/block}
+
+{block name="tail"}{/block}
 
 </body>
 </html>
