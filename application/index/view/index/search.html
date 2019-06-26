@@ -6,9 +6,28 @@
 foreach($users as $val) {
 
     echo('<div class="searchInfo">');
-    echo $val["email"];
-    echo $val["username"];
-    echo $val["description"];
+
+    echo '<table id="searchTable">';
+        echo '<caption><span>Vous avez cherché pour: </span><span>';
+            //TODO: add search info: type and language
+<!--			echo $facon;-->
+<!--			echo " ";-->
+<!--			echo $langue;-->
+			echo "</span></caption>";
+        echo "<tr>";
+            echo '<th rowspan="2" id="nom">';
+                echo $val["username"];
+                echo "</th>";
+            echo '<td id="emailAdress">Adresse email: ';
+                echo $val["email"];
+                echo "</td>";
+            echo "</tr>";
+        echo "<tr>";
+            echo '<td id="selfIntro">Description: ';
+                echo $val["description"];
+                echo "</td>";
+            echo "</tr>";
+        echo "</table>";
     echo('</div>');
 }
 {/php}
