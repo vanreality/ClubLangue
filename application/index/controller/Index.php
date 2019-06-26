@@ -132,8 +132,14 @@ class Index extends Controller
         }
     }
 
-    public function search_to_chat() {
+    public function search_to_calendar($ref_id) {
+        $this->assign("ref_id", $ref_id);
+        //TODO fetch ref_id calendar
+       return $this->fetch('calendar_ref');
+    }
 
+    public function calendar_ref() {
+        return $this->fetch();
     }
 
     // Part Message
