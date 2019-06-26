@@ -15,7 +15,7 @@ foreach($users as $val) {
 			//echo $langue;
 			echo "</span></caption>";
         echo "<tr>";
-            echo '<a href=""><th rowspan="2" id="nom">';
+            echo '<th rowspan="2" id="nom">';
                 echo $val["username"];
                 echo "</th>";
             echo '<td id="emailAdress">Adresse email: ';
@@ -29,6 +29,9 @@ foreach($users as $val) {
             echo "</tr>";
         echo "</table>";
     echo('</div>');
+
+    $url = "search_to_calendar?ref_id=" . $val["id"];
+    echo "<a href=\"" . $url . '">calendar</a>';
 }
 {/php}
 </main>
