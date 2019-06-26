@@ -1,37 +1,39 @@
-<a href="{:url('index')}">
-    <div id="returnHome">
-        ClubLangue
+<header class="start">
+    <a href="{:url('index')}">
+        <div id="returnHome">
+            ClubLangue
+        </div>
+    </a>
+
+    <div id="headerDivCher">
+        <form method="post" action="{:url('search')}">
+            <select class="headBtn" name="type">
+                <option value="learn">apprendre</option>
+                <option value="teach">enseigner</option>
+            </select>
+            <select class="headBtn" name="language">
+                <option value="en">anglais</option>
+                <option value="cn">chinois</option>
+                <option value="fr">français</option>
+                <option value="de">allemand</option>
+                <option value="sp">espagnol</option>
+                <option value="pt">portugal</option>
+                <option value="jp">japonais</option>
+            </select>
+            <input class="headBtn" id="btnChercher" type="submit" value="chercher">
+        </form>
+
     </div>
-</a>
 
-<div id="headerDivCher">
-    <form method="post" action="{:url('search')}">
-        <select class="headBtn" name="type">
-            <option value="learn">apprendre</option>
-            <option value="teach">enseigner</option>
-        </select>
-        <select class="headBtn" name="language">
-            <option value="en">anglais</option>
-            <option value="cn">chinois</option>
-            <option value="fr">français</option>
-            <option value="de">allemand</option>
-            <option value="sp">espagnol</option>
-            <option value="pt">portugal</option>
-            <option value="jp">japonais</option>
-        </select>
-        <input class="headBtn" id="btnChercher" type="submit" value="chercher">
-    </form>
-
-</div>
-
-<div id="headerDivImage">
-    <a href="{:url('signin')}">
-        <img class="headerImg" src="__STATIC__/img/header_user.png" alt="user">
-    </a>
-    <a href="{:url('message')}">
-        <img class="headerImg" src="__STATIC__/img/header_message.png" alt="message">
-    </a>
-    <a href="{:url('calendar')}">
-        <img class="headerImg" src="__STATIC__/img/header_calender.png" alt="calendar">
-    </a>
-</div>
+    <div id="headerDivImage">
+        <a href="{:url('signin')}">
+            <img class="headerImg" src="__STATIC__/img/header_user.png" alt="user">
+        </a>
+        <a href="{:url('message')}">
+            <img class="headerImg" src="__STATIC__/img/header_message.png" alt="message">
+        </a>
+        <a href="{:url('calendar')}">
+            <img class="headerImg" src="__STATIC__/img/header_calender.png" alt="calendar">
+        </a>
+  </div>
+</header>

@@ -5,25 +5,18 @@
     <title>Club Langue</title>
     <link href="__CSS__/style.css" rel="stylesheet" type="text/css">
     <script src="__JS__/script.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {block name="head"}{/block}
-
 </head>
 
 <body onload="init();">
 
-    <header class="start">
-        {include file="common/header" /}
-    </header>
+{include file="common/header" /}
 
-    <main class="container">
-        {block name="container"}{/block}
-    </main>
+{block name="container"}{/block}
 
-    <footer class="end">
-        {block name="footer"}{/block}
-    </footer>
+{block name="footer"}{/block}
 
-    {block name="tail"}{/block}
+{block name="tail"}{/block}
+
 </body>
 </html>
