@@ -1,3 +1,5 @@
+/*main structure*/
+/*index.html*/
 html, body{
     width: 100%;
     height: 100%;
@@ -13,14 +15,21 @@ html, body{
     order: 1;
     z-index: 20;
 }
+.end{
+    width: 100%;height:40%;
+    background-color:#64baba;
+    margin-top:115%;
+    margin-bottom: 0;
+}
 
+/*partie header*/
 #returnHome{
     color: #f3f3f3; font-size: 165%;
     font-weight: bold;
     float: left;
     padding-left: 2%;
     height: 100%;width: 13%;
-    margin-top: 0.4%;
+    padding-top: 0.4%;
 }
 
 #headerDivCher{
@@ -46,28 +55,29 @@ html, body{
     height: 100%;
 }
 
+/*partie main*/
 #mainSection{background-color: #75c4c6;}
 #divideSection1{background-color: #ecd5d4;}
-#divideSection2{background-color: #f3f3f3;}
-.headerImg{height: 90%; width: 14%;float: right;margin-top:2px;position: relative;}
+#divideSection2{background-color: #ffffff;}
+.headerImg{height: 90%; width: 14%;float: right;padding-top:2px;position: relative;}
 
 #sectionTextLeft{
     text-align: center;
     height: 40%;width:45%;
-    padding-top: 23%;padding-bottom: 30%;padding-left: 5%;
+    padding-top: 23%;padding-left: 5%;
     float: left;
     color:#948e3b;
 }
 #sectionTextRight{
     text-align: center;
     height: 40%;width:45%;
-    padding-top: 15%;padding-bottom: 30%;padding-right: 5%;
+    margin-top: 23%;padding-right: 5%;
     float: right;
     color: #5c81a4;
 }
 
 #sectionBtnApprend{
-    height:10%;width: 30%;margin-top:25%;margin-bottom: 33%;
+    height:10%;width: 30%;margin-top:25%;
     background-color: #948e2b;
     float: right;
     margin-right: 10%;
@@ -78,7 +88,7 @@ html, body{
 }
 
 #sectionBtnEnsei{
-    height: 10%;width: 30%;margin-top:5%;margin-bottom: 33%;
+    height: 10%;width: 30%;margin-top:25%;
     background-color: #5c81a4;
     float: left;
     margin-left: 10%;
@@ -98,6 +108,7 @@ html, body{
     text-align: center;
     padding-top: 10%;
     padding-left: 20%;
+    clear: both;
 
 }
 #leftPart{
@@ -115,7 +126,7 @@ html, body{
 }
 
 #mainBtnApprend{
-    height:20%;width: 30%;margin-top:28%;margin-bottom: 33%;
+    height:20%;width: 30%;margin-top:28%;
     background-color:  #f3f3f3;
     float: right;
     margin-right: 10%;
@@ -125,7 +136,7 @@ html, body{
     outline: medium;
 }
 #mainBtnEnsei{
-    height: 20%;width: 30%;margin-top:28%;margin-bottom: 33%;
+    height: 20%;width: 30%;margin-top:28%;
     background-color:  #f3f3f3;
     float: left;
     margin-left: 10%;
@@ -143,16 +154,33 @@ html, body{
     border-radius: 15px;
     background-color: #5c81a4;
     color: #f3f3f3;
-    margin-top:1%;
+    margin-top:2.5%;
     font-size: 110%;
     border: none;
 }
+
+.returnTop{
+    width: 10%;height: 10%;
+    margin-left: 90%;
+
+}
+
+#returnToTop1{
+    width: 100%;height: 100%;
+    margin-top: 100%;
+}
+
+#returnToTop2{
+    width: 100%;height: 100%;
+    margin-top: 10%;
+}
+
+/*partie profile.html*/
 #profileBody{
     background-color: #f3f3f3;
     width:100%;
     height:70%;
     padding-top:15%;
-    padding-bottom: 30%;
     text-align: center;
 
 }
@@ -178,6 +206,7 @@ html, body{
     font-size:80%;
 }
 
+/*partie signin.html*/
 #mainLogin{
     width: 100%;
     height: 93%;
@@ -208,7 +237,7 @@ html, body{
 #toMdp{
     text-decoration: underline;
 }
-.inputCase{
+.inputCase {
     height: 10%;
     width: 90%;
     border: 1px solid #5c81a4;
@@ -216,9 +245,11 @@ html, body{
     font-size: 25px;
     outline: medium;
     text-indent: 20px;
-
 }
-
+#calendar {
+    width: 900px;
+    margin: 20px auto 10px auto;
+}
 #btnConnex{
     margin-top: 35px;
     height: 10%;
@@ -237,6 +268,7 @@ html, body{
     color: #f3f3f3;
 }
 
+/*partie signup.html */
 #mainSignup{
     width: 100%;
     height: 70%;
@@ -284,4 +316,133 @@ html, body{
 .signupInfo{
     text-align: left;
     margin-left: 5%;
+}
+
+#alertEmailVide{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertEmailNonValid{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertNameShort{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertPassLength{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+#alertCheckPass{
+    font-size:10px;
+    display: none;
+    color: red;
+}
+
+/*Partie footer*/
+#footerImage{
+    height: 98%;
+    width: 98%;
+}
+
+#footerImgDiv{
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+
+#footerText{
+    height: 100%;
+    width: 50%;
+    float: left;
+    color: #f3f3f3;
+    display: table;
+    margin:auto;
+}
+
+#innerFooter{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    font-size: 15px;
+}
+
+#contactEmail{
+    color: #f3f3f3;
+}
+
+/*search.html*/
+
+.searchInfo{
+    padding-top: 10%;
+    width: 100%;
+    height: 80%;
+    text-align: left;
+    display: inline-block;
+    font-size:15px;
+    color:#5c81a4;
+}
+
+#searchTable{
+    width: 60%;
+    height: 20%;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: left;
+    color:#5c81a4;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+table,tr,th,td{
+    border:1px solid #5c81a4;
+}
+
+#nom{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#emailAdress{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#selfIntro{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#external-events {
+    position: fixed;
+    z-index: 2;
+    top: 100px;
+    left: 20px;
+    width: 150px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+
+#external-events .fc-event {
+    margin: 1em 0;
+    cursor: move;
+}
+
+#calendar-container {
+    position: relative;
+    z-index: 1;
+    margin-left: 200px;
 }

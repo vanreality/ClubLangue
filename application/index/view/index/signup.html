@@ -1,7 +1,7 @@
 {extend name="common/base" /}
 
 {block name="container"}
-
+<main class="container">
 <div id="mainSignup">
     <div id="signupText">
        <span>Créer votre compte et nous joindre chez ClubLangue</span>
@@ -12,20 +12,24 @@
 
     <form id="createAccount" method="post" action="{:url('signup_check')}">
         <p class="signupInfo">Adresse email</p>
-        <input class="inputCase" type="text" name="email">
+        <input id="emailInput" class="inputCase" type="text" name="email" onkeyup="checkUserEmail();">
+        <p id="alertEmailVide">Ce champ est vide, veuillez le renseigner</p>
+        <p id="alertEmailNonValid">Cette adresse email n'est pas valide</p>
+
         <p class="signupInfo">Votre pseudo</p>
-        <input class="inputCase" type="text" name="username">
+        <input id="nameInput" class="inputCase" type="text" name="username" onkeyup="checkUserName();">
+        <p id="alertNameShort">Votre pseudo doit contenir au moins 4 caractères</p>
+
         <p class="signupInfo">Votre mot de passe</p>
-        <input class="inputCase" type="password" name="password">
+        <input id="passInput" class="inputCase" type="password" name="password" onkeyup="checkPass1();">
+        <p id="alertPassLength">Votre mot de passe doit contenir au moins 6 caractères</p>
+
         <p class="signupInfo">Confirmer votre mot de passe</p>
-        <input class="inputCase" type="password" name="password_check">
+        <input id="pass2Input" class="inputCase" type="password" name="password_check" onkeyup="verifyPass();">
+        <p id="alertCheckPass">Le mot de passe ne correspond pas</p>
+
         <input id="btnCreate" type="submit" value="créer votre compte">
     </form>
 </div>
-
-{/block}
-
-
-{block name="footer"}
-
+</main>
 {/block}
