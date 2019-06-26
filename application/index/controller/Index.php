@@ -107,6 +107,16 @@ class Index extends Controller
         }
     }
 
+    public function calendar(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch();
+        }
+    }
+
+    // Part Search
+
     public function search() {
         if (!session('?userinfo')) {
             return $this->fetch('signin');
@@ -122,25 +132,139 @@ class Index extends Controller
         }
     }
 
-    public function calendar(){
-//        $res = Db::query("select * from events");
-//        dump(json_encode($res));
-       // View::share("load",(new \app\index\model\Calendar)->loadEvent());
-       // $this->assign("load",(new \app\index\model\Calendar)->loadEvent());
-        if (!session('?userinfo')) {
-            return $this->fetch('signin');
-        } else {
-            return $this->fetch();
-        }
+    public function search_to_calendar($ref_id) {
+        $this->assign("ref_id", $ref_id);
+        //TODO fetch ref_id calendar
+       return $this->fetch('calendar_ref');
     }
+
+    public function calendar_ref() {
+        return $this->fetch();
+    }
+
+    // Part Message
 
     public function message(){
         if (!session('?userinfo')) {
             return $this->fetch('signin');
-        } else {
-            return $this->fetch();
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            $ref = $val->ref_id;
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+            array_push($person, $per);
+        }
+        $this->assign("persons",$person);
+
+        return $this->fetch();
+    }
+
+    public function info(){
+        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+        $mes = array();
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+        /** content pour enregistrer les messages envoye **/
+        $content = array();
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            echo($cov_id);
+            $ref = $val->ref_id;
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+
+            array_push($person, $per);
+            array_merge((new \app\index\model\Message)->getMes($cov_id), $mes);
+        }
+
+        foreach($mes as $val){
+            echo($val->content);
         }
     }
+
+    public function getConversation(){
+        if (!session('?userinfo')) {
+            return null;
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+        return $conv;
+    }
+
+    public function getMessage(){
+        if (!session('?userinfo')) {
+            return null;
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+
+    $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+    $mes = array();
+    /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+    $person = array();
+    /** content pour enregistrer les messages envoye **/
+    $content = array();
+
+    foreach($conv as $val){
+        $cov_id = $val->id;
+        $ref = $val->ref_id;
+        /** obtenir les infos des autres personnes dans la tableau user **/
+        $per = User::get($ref)->toArray();
+        array_push($person, $per);
+        /** obtenir les infos des autres personnes dans la tableau user **/
+        $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
+        $content += $mes;
+    }
+
+    return $content;
+    }
+
+    public function createConv(){
+        $user = trim(input('user'));
+        $ref = trim(input('ref'));
+        $status = trim(input('id'));
+        $data = [
+            'user_id' => $user,
+            'ref_id' => $ref,
+            'status' => $status
+        ];
+
+        $status = (new \app\index\model\Conversation) -> insert($data);
+    }
+
+    public function upMessage(){
+        $speaker = trim(input('speaker'));
+        $cov_id = trim(input('cov_id'));
+        $content = trim(input('content'));
+
+        $data = [
+            'cov_id'    => $cov_id,
+            'content' => $content,
+            'speaker_id' => $speaker
+        ];
+
+        $status = (new \app\index\model\Message) -> insert($data);
+
+        if ($status == 1) {
+
+        }else{
+            //TODO 修改提醒信息
+            $this->error('Veuillez renvoyer');
+        }
+    }
+
+    // Part Calendar
 
     public function load_Event(){
         return (new \app\index\model\Calendar)->loadEvent();
