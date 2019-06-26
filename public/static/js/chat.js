@@ -13,7 +13,7 @@ var chat = {
 
 
 $(document).ready(function(){
-
+  var urlP = 'getPerson';
   var urlM = 'getMessage';
   var urlC = 'getConversation';
   var data = {
@@ -24,9 +24,6 @@ $(document).ready(function(){
     for(i=0; i<data.length; i++) {
       var id = data[i].ref_id;
       var cov_id = data[i].id;
-
-      console.log(id);
-
       var div = '<div class="chat" data-chat=' + id + ' ' + 'cov_id=' + cov_id + '>';
       $('.right .top').after(div);
     }
@@ -65,7 +62,7 @@ function allCov(data){
             var start = $('<div class="conversation-start">');
             start.append(time);
             $(c).append(start);
-            var divY = $('<div class="bubble me">').html(dataM[i].content);
+            var divY = $('<p class="bubble me">').html(dataM[i].content);
             $(c).append(divY);
         }
       }
@@ -132,7 +129,6 @@ function sentMessage() {
       'content' : mes,
       'speaker' : 1
   };
-
 
   $.get(url,data,function(data){
   })
