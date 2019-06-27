@@ -11,31 +11,33 @@ var chat = {
   name: document.querySelector('.container .right .top .name'),
 };
 
+var id_user;
 
 $(document).ready(function(){
-
   var urlM = 'getMessage';
   var urlC = 'getConversation';
   var data = {
-
   };
 
-  $.get(urlC,data,function(data) {
-    for(i=0; i<data.length; i++) {
-      var id = data[i].ref_id;
+ $.get(urlC,data,function(data) {
+    id_user = data[data.length-1];
+    for(i=0; i<data.length-1; i++) {
+      var idR = data[i].ref_id;
+      var idU = data[i].user_id;
       var cov_id = data[i].id;
-
-      console.log(id);
-
-      var div = '<div class="chat" data-chat=' + id + ' ' + 'cov_id=' + cov_id + '>';
+      if(idR == id_user){
+          var div = '<div class="chat" data-chat=' + idU + ' ' + 'cov_id=' + cov_id + '>';
+      }else{
+          var div = '<div class="chat" data-chat=' + idR + ' ' + 'cov_id=' + cov_id + '>';
+      }
       $('.right .top').after(div);
     }
   });
 
-
   $.get(urlM,data,function(data){
     allCov(data);
   });
+
 });
 
 function allCov(data){
@@ -65,7 +67,7 @@ function allCov(data){
             var start = $('<div class="conversation-start">');
             start.append(time);
             $(c).append(start);
-            var divY = $('<div class="bubble me">').html(dataM[i].content);
+            var divY = $('<p class="bubble me">').html(dataM[i].content);
             $(c).append(divY);
         }
       }
@@ -93,7 +95,13 @@ function setActiveChat(f) {
     chat.current.classList.remove('active-chat');
   }
 
-  chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
+  var selectChat = chat.container.querySelector('[data-chat="' + chat.person + '"]');
+  if(selectChat!=null){
+      selectChat.classList.add('active-chat');
+  }
+  else{
+
+  }
 
   friends.name = f.querySelector('.name').innerText;
   chat.name.innerHTML = friends.name;
@@ -130,9 +138,8 @@ function sentMessage() {
   var data = {
       'cov_id' : cov_id,
       'content' : mes,
-      'speaker' : 1
+      'speaker' : id_user
   };
-
 
   $.get(url,data,function(data){
   })
@@ -141,5 +148,4 @@ function sentMessage() {
 
 
 function urlMessage() {
-
 }

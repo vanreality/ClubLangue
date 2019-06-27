@@ -29,6 +29,10 @@ class Calendar extends Model
         $res=Calendar::where('user_id',$idload)->select();
         return $res;
     }
+    public function loadRefEvent($ref_id){
+        $res=Calendar::where('user_id',$ref_id)->select();
+        return $res;
+    }
 
     public function dragInsertEvent($time, $language, $type){
         $data = [
