@@ -11,6 +11,7 @@ var pass1Length;
 var pass2;
 var checkPass;
 var arrowScroll;
+var createAccount;
 
 
 function init() {
@@ -27,7 +28,15 @@ function init() {
     pass2 = document.getElementById("pass2Input");
     checkPass = document.getElementById("alertCheckPass");
     arrowScroll = document.getElementById("mainSection");
+    createAccount = document.getElementById("btnCreate");
 
+    createAccount.onclick=function(){
+        if(!checkUserEmail() || !checkUserName()  || !checkPass1()  || !verifyPass()){
+            alert("votre saisi n'est pas correcte");
+            document.createForm.focus();
+            return false;
+        }
+    }
 }
 
 function toSection1(){
@@ -63,24 +72,28 @@ function checkUserName() {
     if(pseudo.value.length <= 3){
         pseudo.style.border = "1px solid red";
         nameShort.style.display = "block";
+        return false;
     }
 
     else{
         pseudo.style.border = "1px solid  #5c81a4";
         nameShort.style.display = "none";
+        return true;
     }
-    
+
 }
 
 function checkPass1() {
     if(pass1.value.length <= 5){
         pass1.style.border = "1px solid red";
         pass1Length.style.display = "block";
+        return false;
     }
 
     else{
         pass1.style.border = "1px solid  #5c81a4";
         pass1Length.style.display = "none";
+        return true;
     }
 }
 
@@ -88,11 +101,13 @@ function verifyPass() {
     if(pass1.value !== pass2.value){
         pass2.style.border = "1px solid red";
         checkPass.style.display = "block";
+        return false;
     }
 
     else{
         pass2.style.border = "1px solid  #5c81a4";
         checkPass.style.display = "none";
+        return true;
     }
 }
 

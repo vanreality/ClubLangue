@@ -6,12 +6,21 @@ use think\Request;
 use think\Db;
 use think\Controller;
 use think\Session;
+use think\View;
 
 class Index extends Controller
 {
     public function index()
     {
         return $this->fetch();
+    }
+
+    public function index_btn(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            return $this->fetch('calendar');
+        }
     }
 
     public function signin(){
@@ -31,19 +40,15 @@ class Index extends Controller
         $data = (new \app\index\model\User)->getUser($email);
 //         dump($data);exit;
         if (!$data) {
-            //TODO 修改提醒信息
-            $this->error('用户名不存在，请确认后重试！');
+            $this->error("Le compte n'existe pas, vérifiez votre saisie");
         }
         // 判断密码是否正确
         if ($data['password'] == $password) {
             // 一般把用户信息存入session，记录登录状态
             session('userinfo',$data);
-            //TODO 修改提醒信息
-//            $this->success('登录成功！','index');
             return $this->fetch('profile');
         }else{
-            //TODO 修改提醒信息
-            $this->error('用户名和密码不匹配，请确认后重试！');
+            $this->error("Le mot de passe n'est pas correcte！");
         }
     }
 
@@ -68,20 +73,17 @@ class Index extends Controller
         $password = trim(input('password'));
         $password_check = trim(input('password_check'));
 
-        //TODO 修改提醒信息
         if (strlen($password) < 6) {
-            $this->error('密码长度不得小于6位！');
+            $this->error('Votre mot de passe doit contenir au moins 6 caractères！');
         }
 
-        //TODO 修改提醒信息
         if ($password != $password_check) {
-            $this->error('两次密码输入不相同！');
+            $this->error('Le mot de passe ne correspond pas！');
         }
 
         $userdata = (new \app\index\model\User)->getUser($email);
         if ($userdata) {
-            //TODO 修改提醒信息
-            $this->error('该用户名已经存在，请换一个重试！');
+            $this->error("L'utilisateur existe déjà！");
         }
         $data = [
             'email'    => $email,
@@ -90,13 +92,22 @@ class Index extends Controller
         ];
         $status = (new \app\index\model\User)->insert($data);
         if ($status == 1) {
-            //TODO 修改提醒信息
-            $this->success('恭喜您注册成功，现在前往登录页！','signin');
+            $this->success('Félicitations pour votre inscription, allez maintenant à la page de connexion！','signin');
         }else{
-            //TODO 修改提醒信息
-            $this->error('注册时出现问题，请重试或联系管理员！');
+            $this->error('Un problème est survenu lors de l\'inscription. Veuillez réessayer ou contacter l\'administrateur.！');
         }
     }
+
+    public function calendar(){
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        } else {
+            $this->assign("userinfo", session('userinfo'));
+            return $this->fetch();
+        }
+    }
+
+    // Part Search
 
     public function search() {
         if (!session('?userinfo')) {
@@ -105,18 +116,181 @@ class Index extends Controller
             $type = trim(input("type"));
             $language = trim(input("language"));
 
-            //TODO 根据类型和语言查询数据库
+            switch ($type) {
+                case "apprendre":
+                    $type = 1;
+                    break;
+                case "enseigner":
+                    $type = 0;
+                    break;
+            }
 
-            $users = User::all();
+            $users = (new \app\index\model\User)->searchUser($type, $language);
+//            dump($users);
             $this->assign("users", $users);
             return $this->fetch();
         }
     }
-    public function calendar(){
+
+    public function search_to_calendar($ref_id) {
+        $this->assign("ref_id", $ref_id);
+        //TODO fetch ref_id calendar
+       return $this->fetch('calendar_ref');
+    }
+
+    public function calendar_ref() {
         return $this->fetch();
     }
 
+    // Part Message
+
     public function message(){
-           return $this->fetch();
+        if (!session('?userinfo')) {
+            return $this->fetch('signin');
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+
+        foreach($conv as $val){
+            $ref = $val->ref_id;
+            $user = $val->user_id;
+            /** Pour eviter les redondence on utilise un cov pour garder les deux cotes
+             * donc il faut faire un verification si user est user_id ou ref_id avant sortir les donnee*
+             */
+            if($ref!=$id){
+                $per = User::get($ref)->toArray();
+            }
+            else{
+                $per = User::get($user)->toArray();
+            }
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            array_push($person, $per);
+        }
+        $this->assign("persons",$person);
+
+        return $this->fetch();
+    }
+
+    public function info(){
+        $conv = (new \app\index\model\Conversation)->getConvByUserId(1);
+        $mes = array();
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+        /** content pour enregistrer les messages envoye **/
+        $content = array();
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            echo($cov_id);
+            $ref = $val->ref_id;
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+
+            array_push($person, $per);
+            array_merge((new \app\index\model\Message)->getMes($cov_id), $mes);
+        }
+
+        foreach($mes as $val){
+            echo($val->content);
+        }
+    }
+
+    public function getConversation(){
+        if (!session('?userinfo')) {
+            return null;
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+        /** Envoyer en meme temps les id de utilisateur a la fin de tableau **/
+        array_push($conv,$id);
+        return $conv;
+    }
+
+    public function getMessage(){
+        if (!session('?userinfo')) {
+            return null;
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+
+        $mes = array();
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+        /** content pour enregistrer les messages envoye **/
+        $content = array();
+
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            $ref = $val->ref_id;
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+            array_push($person, $per);
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
+            $content += $mes;
+        }
+        return $content;
+    }
+
+    public function createConv(){
+        $user = trim(input('user'));
+        $ref = trim(input('ref'));
+        $status = trim(input('id'));
+        $data = [
+            'user_id' => $user,
+            'ref_id' => $ref,
+            'status' => $status
+        ];
+
+        $status = (new \app\index\model\Conversation) -> insert($data);
+    }
+
+    public function upMessage(){
+        $speaker = trim(input('speaker'));
+        $cov_id = trim(input('cov_id'));
+        $content = trim(input('content'));
+
+        $data = [
+            'cov_id'    => $cov_id,
+            'content' => $content,
+            'speaker_id' => $speaker
+        ];
+
+        $status = (new \app\index\model\Message) -> insert($data);
+
+        if ($status == 1) {
+
+        }else{
+            $this->error('Veuillez renvoyer');
+        }
+    }
+
+    // Part Calendar
+
+    public function load_event(){
+        return (new \app\index\model\Calendar)->loadEvent();
+    }
+
+    public function load_ref_event($ref_id){
+        return (new \app\index\model\Calendar)->loadRefEvent($ref_id);
+    }
+    public function insert_event(){
+        (new \app\index\model\Calendar)->insertEvent();
+    }
+
+    public function delete_event($id){
+
+        (new \app\index\model\Calendar)->deleteEvent($id);
+    }
+
+    public function drag_insert_event($time, $language, $type){
+        (new \app\index\model\Calendar)->dragInsertEvent($time, $language, $type);
     }
 }

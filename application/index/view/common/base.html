@@ -4,32 +4,18 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
     <title>Club Langue</title>
     <link href="__CSS__/style.css" rel="stylesheet" type="text/css">
-    <link href="__STATIC__/fullcalendar/packages/core/main.css" rel='stylesheet' />
-    <link href="__STATIC__/fullcalendar/packages/daygrid/main.css" rel='stylesheet' />
 
-
-    <script src="__STATIC__/fullcalendar/packages/core/main.js"></script>
-    <script src="__STATIC__/fullcalendar/packages/daygrid/main.js"></script>
     <script src="__JS__/script.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {block name="head"}{/block}
-
 </head>
 
-<body onload="init();">
+<body>
 
-    <header class="start">
-        {include file="common/header" /}
-    </header>
+{include file="common/header" /}
 
-    <main class="container">
-        {block name="container"}{/block}
-    </main>
+{block name="container"}{/block}
 
-    <footer class="end">
-        {block name="footer"}{/block}
-    </footer>
+{block name="footer"}{/block}
 
-    {block name="tail"}{/block}
 </body>
 </html>

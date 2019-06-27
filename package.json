@@ -1,9 +1,4 @@
 {
   "name": "ClubLangue",
-  "version": "1.0.0",
-  "dependencies": {
-    "@fullcalendar/list": "^4.2.0",
-    "@fullcalendar/timegrid": "latest",
-    "@fullcalendar/daygrid": "latest"
-  }
+  "version": "1.0.0"
 }

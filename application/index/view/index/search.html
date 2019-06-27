@@ -1,22 +1,63 @@
 {extend name="common/base" /}
 
 {block name="container"}
-
+<main class="container">
 {php}
+    echo '<div class="searchInfo">';
+    echo '<p id="searchText">Vous avez cherché pour: ';
+    echo $_POST["type"];
+    echo " ";
+
+    switch($_POST["language"]){
+        case "en":
+            echo "anglais";
+            break;
+        case "cn":
+            echo "chinois";
+            break;
+        case "fr":
+            echo "français";
+            break;
+        case "de":
+            echo "allemand";
+            break;
+        case "sp":
+            echo "espagnol";
+            break;
+        case "pt":
+            echo "portugal";
+            break;
+        case "jp":
+            echo "japonais";
+            break;
+        case "default":
+            echo "default";
+            break;
+        }
+
+    echo '</p>';
+            //TODO: add search info: type and language
+			//echo $facon;
+			//echo " ";
+			//echo $langue;
+			echo "</span></caption>";
+
+    if(empty($users)){
+    echo '<p id="nonResultAlert">Aucun résultat trouvé! Veuillez essayer encore une fois avec vos préférences</p>';
+    }
+
 foreach($users as $val) {
 
-    echo('<div class="searchInfo">');
 
     echo '<table id="searchTable">';
-        echo '<caption><span>Vous avez cherché pour: </span><span>';
-            //TODO: add search info: type and language
-<!--			echo $facon;-->
-<!--			echo " ";-->
-<!--			echo $langue;-->
-			echo "</span></caption>";
+
         echo "<tr>";
             echo '<th rowspan="2" id="nom">';
                 echo $val["username"];
+                echo "</th>";
+            echo '<th rowspan="2">';
+                    $url = "search_to_calendar?ref_id=" . $val["id"];
+                    echo "<a id=\"toCalendar\" href=\"" . $url . '">calendar</a>';
                 echo "</th>";
             echo '<td id="emailAdress">Adresse email: ';
                 echo $val["email"];
@@ -28,12 +69,9 @@ foreach($users as $val) {
                 echo "</td>";
             echo "</tr>";
         echo "</table>";
-    echo('</div>');
+
 }
+    echo '</div>';
 {/php}
-
-{/block}
-
-{block name="footer"}
-{include file="common/footer" /}
+</main>
 {/block}
