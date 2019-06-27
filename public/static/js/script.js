@@ -47,6 +47,11 @@ function toSection2(){
     scrollSection2.scrollIntoView();
 }
 
+function toTop() {
+    arrowScroll.scrollIntoView();
+}
+
+
 function checkUserEmail() {
    if(email.value === ""){
         email.style.border = "1px solid red";
@@ -109,8 +114,4 @@ function verifyPass() {
         checkPass.style.display = "none";
         return true;
     }
-}
-
-function toTop() {
-    arrowScroll.scrollIntoView();
 }
