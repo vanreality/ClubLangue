@@ -118,10 +118,10 @@ class Index extends Controller
 
             switch ($type) {
                 case "apprendre":
-                    $type = 0;
+                    $type = 1;
                     break;
                 case "enseigner":
-                    $type = 1;
+                    $type = 0;
                     break;
             }
 
@@ -265,10 +265,13 @@ class Index extends Controller
 
     // Part Calendar
 
-    public function load_Event(){
+    public function load_event(){
         return (new \app\index\model\Calendar)->loadEvent();
     }
 
+    public function load_ref_event($ref_id){
+        return (new \app\index\model\Calendar)->loadRefEvent($ref_id);
+    }
     public function insert_event(){
         (new \app\index\model\Calendar)->insertEvent();
     }

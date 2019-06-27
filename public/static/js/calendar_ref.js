@@ -1,4 +1,10 @@
+var languages = ["anglais", "chinois", "français", "allemand", "espagnol", "portugal", "japonais"];
+var languages_short = ["en", "zh", "fr", "de", "es", "pt", "jp"];
+var type = ["Apprendre", "Enseigner"];
+var i, j;
+
 document.addEventListener('DOMContentLoaded', function() {
+
     var calendarEl = document.getElementById('calendar');
 
     var CALENDAR = "Calendar";
@@ -27,34 +33,72 @@ document.addEventListener('DOMContentLoaded', function() {
         selectHelper:true,
         droppable:true,
 
-        select: function(info)
-        {
-            //TODO select 与 drag方法类似
-            alert('selected ' + info.startStr + ' to ' + info.endStr);
-        },
 
-        drop: function(info) {
-            var time = info.dateStr.replace(/T/, " ");
-            time = time.substr(0, 19);
+        events: function(info, successCallback, failureCallback){
             $.ajax({
-                url:"drag_insert_event",
-                type:"POST",
+                url:'load_ref_event',
+                type: 'POST',
                 data:{
-                    time: time,
-                    // uid: uid,
-                    // language: lan,
-                    // type: type
+                     "ref_id":getQueryVariable("ref_id"),
                 },
                 error:function(){
                     alert("error");
                 },
-                success:function()
-                {
-                    alert("Added Successfully");
+                success: function(res){
+                    var events = [];
+                    var i=0;
+                    if(res!=null){
+                        for (i in res){
+                            var time = new Date(res[i].time.replace(" ", "T"));
+                            var lan = res[i].language;
+
+                            for(var j in languages) {
+                                if (lan === languages_short[j]){
+                                    lan = languages[j];
+                                }
+                            }
+
+                            events.push({
+                                id:res[i].id,
+                                start: time,
+                                title: type[res[i].type] + " " + lan,
+                            });
+                        }
+                        successCallback(events);
+                    }
+
                 }
             })
         },
+
+        eventClick: function(info) {
+
+            if(confirm("Réserver ce cours?"))
+            {
+                
+
+                if(confirm("laisser un message/ lancer une conversation?")){
+                    window.location="message";
+
+                }
+
+
+            }
+        },
+
+
+
     });
 
     calendar.render();
 });
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
