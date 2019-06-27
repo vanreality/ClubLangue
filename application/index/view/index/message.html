@@ -1,15 +1,15 @@
 {extend name="common/base" /}
 
+{block name="head"}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="__CSS__/chat.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/reset.min.css" rel="stylesheet" type="text/css">
+{/block}
+
 {block name="container"}
-
-<head>
-    <link href="__CSS__/chat.css" rel="stylesheet" type="text/css">
-    <link href="__CSS__/reset.min.css" rel="stylesheet" type="text/css">
-    <script src="__JS__/jquery-3.4.1.min.js"></script>
-</head>
-
-
-<div class="container">
+<main class="container">
+<div class="wrapper">
+    <div class="container">
         <div class="left">
             <div class="top">
                 <input type="text" placeholder="Search" />
@@ -37,26 +37,25 @@
                 echo('</li>');
                 }
                 {/php}
+
             </ul>
         </div>
 
         <div class="right">
             <div class="top"><span>To: <span class="name">  </span></span></div>
-
-            <div class="write">
+            <form class="write" method="post" action="{:url('signup_check')}">
                 <a href="javascript:allMessage();" class="write-link attach"></a>
                 <input name="message" type="text" />
                 <a href="javascript:sentMessage();" class="write-link send"></a>
-            </div>
-
+            </form>
         </div>
 
         </div>
+    </div>
 </div>
-
+</main>
 {/block}
 
-
-{block name="tail"}
+{block name="footer"}
 <script src="__JS__/chat.js"></script>
 {/block}

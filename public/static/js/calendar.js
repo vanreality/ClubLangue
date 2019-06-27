@@ -1,10 +1,26 @@
+var container = $("<div>");
+var dragElement = $("<div class='fc-event' data-lan='' data-type=''>");
+var languages = ["anglais", "chinois", "français", "allemand", "espagnol", "portugal", "japonais"];
+var languages_short = ["en", "zh", "fr", "de", "es", "pt", "jp"];
+var type = ["Apprendre", "Enseigner"];
+var i, j;
+
 document.addEventListener('DOMContentLoaded', function() {
+    for(i in languages) {
+        for (j in type) {
+            var d = dragElement.clone()
+                .html(type[j] + " " + languages[i])
+                .data("type",j)
+                .data("language", languages[i]);
+
+            $("p").after(d);
+        }
+    }
+
     var Draggable = FullCalendarInteraction.Draggable;
 
     var containerEl = document.getElementById('external-events');
     var calendarEl = document.getElementById('calendar');
-
-    var CALENDAR = "Calendar";
 
     // initialize the external events
     // -----------------------------------------------------------------
@@ -42,6 +58,71 @@ document.addEventListener('DOMContentLoaded', function() {
         selectHelper:true,
         droppable:true,
 
+        events: function(info, successCallback, failureCallback){
+            $.ajax({
+                url:'load_event',
+                method: 'POST',
+                error:function(){
+                    alert("error");
+                },
+                success: function(res){
+                    var events = [];
+                    var i=0;
+                    if(res!=null){
+                        for (i in res){
+                            var time = new Date(res[i].time.replace(" ", "T"));
+                            var lan = res[i].language;
+
+                            for(var j in languages) {
+                                if (lan === languages_short[j]){
+                                    lan = languages[j];
+                                }
+                            }
+
+                            events.push({
+                                id:res[i].id,
+                                start: time,
+                                title: type[res[i].type] + " " + lan,
+                            });
+                        }
+                        successCallback(events);
+                    }
+
+                }
+            })
+        },
+        eventClick: function(info) {
+
+            if(confirm(""+info.event.id))
+            {
+                var id = info.event.id;
+                $.ajax({
+                    url:"delete_event",
+                    type:"POST",
+                    data:{id:id},
+                    success:function()
+                    {
+                        // calendar.fullCalendar('refetchEvents');
+                        calendar.refetchEvents();
+                        alert("Event Removed");
+                    }
+                })
+            }
+            // var eventObj = info.event;
+            //
+            // if (eventObj.url) {
+            //     alert(
+            //         'Clicked ' + eventObj.title + '.\n' +
+            //         'Will open ' + eventObj.url + ' in a new tab'
+            //     );
+            //
+            //     window.open(eventObj.url);
+            //
+            //     info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+            // } else {
+            //     alert('Clicked ' + eventObj.title);
+            // }
+        },
         select: function(info)
         {
             //TODO select 与 drag方法类似
@@ -49,8 +130,21 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         drop: function(info) {
-            //TODO console.log可以看到info所包括的内容，其中有所拖拽块的相关信息，可以传给数据库，user信息在session里
-            console.log(info);
+            var choice = info.draggedEl.innerHTML.split(" ");
+
+            var i,j;
+
+            for (i in type) {
+                if (choice[0] === type[i]){
+                    choice[0] = i;
+                }
+            }
+
+            for(j in languages) {
+                if (choice[1] === languages[j]){
+                    choice[1] = languages_short[j];
+                }
+            }
 
             var time = info.dateStr.replace(/T/, " ");
             time = time.substr(0, 19);
@@ -59,16 +153,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 type:"POST",
                 data:{
                     time: time,
-                    // uid: uid,
-                    // language: lan,
-                    // type: type
+                    language: choice[1],
+                    type: choice[0]
                 },
                 error:function(){
                     alert("error");
                 },
                 success:function()
                 {
-                    alert("Added Successfully");
+                    // alert("Added Successfully");
                 }
             })
         },

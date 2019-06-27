@@ -107,21 +107,6 @@ function setActiveChat(f) {
   chat.name.innerHTML = friends.name;
 }
 
-function createConv(){
-  var id = '';
-  var user = '';
-  var ref = '';
-  var status = '';
-
-  var data ={
-    'id': id,
-    'user' : user,
-    'ref' : ref,
-    'status' : status
-  }
-
-}
-
 function sentMessage() {
   var mes = $("input[name=message]").val();
   var send = $("<div class='bubble me'>::before").html(mes);

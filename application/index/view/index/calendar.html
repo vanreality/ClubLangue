@@ -2,117 +2,6 @@
 
 {block name="head"}
 
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />-->
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>-->
-
-<!--<script>-->
-<!--    $(document).ready(function() {-->
-<!--        var calendar = $('#calendar').fullCalendar({-->
-<!--            editable:true,-->
-<!--            header:{-->
-<!--                left:'prev,next today',-->
-<!--                center:'title',-->
-<!--                right:'month,agendaWeek,agendaDay'-->
-<!--            },-->
-<!--            //TODO 此处要将数据库中已有事件放入events， events接受的事件形式有几种，在链接里 https://fullcalendar.io/docs/v3/events-array，-->
-<!--            // 我用花括号的方式传递前面从数据库中获取的事件，但是{参数},相当于<? echo '参数'/>，echo不能打印数组，就会报错。没有想到怎么把数组传过来。-->
-<!--            //现在的event只包括，id， title， start_event，end_event,-->
-<!--            events:[]-->
-<!--            ,-->
-<!--            selectable:true,-->
-<!--            selectHelper:true,-->
-<!--            select: function(start, end)-->
-<!--            {-->
-<!--                // //TODO 弹出窗口可选择语言，教或学-->
-<!--                //-->
-<!--                // var title = prompt("Enter Event Title");-->
-<!--                // if(title)-->
-<!--                // {-->
-<!--                //     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");-->
-<!--                //     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");-->
-<!--                //     $.ajax({-->
-<!--                //         //TODO 调用了insert_event 方法，但是没有想到怎么把title，start，ent，三个参数传过去,这里是直接用鼠标选的时间起始和结束，我没想到怎么用input。-->
-<!--                //         //TODO 现在我在insert_event里面放的是一个手动添加的事件，是可以添加到数据库里的。-->
-<!--                //         //下面的调整时间，拖拽事件，和删除事件，跟insert这里基本是一样的。之前的几个deleteEvent.php updateEvent.php还没来得及删-->
-<!--                //         url:"{:url('insert_event')}",-->
-<!--                //         type:"POST",-->
-<!--                //         data:{title:title, start:start, end:end},-->
-<!--                //         error:function(){-->
-<!--                //             alert("error");-->
-<!--                //         },-->
-<!--                //         success:function()-->
-<!--                //         {-->
-<!--                //             calendar.fullCalendar('refetchEvents');-->
-<!--                //             alert("Added Successfully");-->
-<!--                //         }-->
-<!--                //     })-->
-<!--                // }-->
-<!--                alert("selected");-->
-<!--            },-->
-
-<!--            editable:true,-->
-
-<!--            eventResize:function(event)-->
-<!--            {-->
-<!--                var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");-->
-<!--                var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");-->
-<!--                var title = event.title;-->
-<!--                var id = event.id;-->
-<!--                $.ajax({-->
-<!--                    url:"updateEvent.php",-->
-<!--                    type:"POST",-->
-<!--                    data:{title:title, start:start, end:end, id:id},-->
-<!--                    success:function(){-->
-<!--                        calendar.fullCalendar('refetchEvents');-->
-<!--                        alert('Event Update');-->
-<!--                    }-->
-<!--                })-->
-<!--            },-->
-
-<!--            eventDrop:function(event)-->
-<!--            {-->
-<!--                var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");-->
-<!--                var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");-->
-<!--                var title = event.title;-->
-<!--                var id = event.id;-->
-<!--                $.ajax({-->
-<!--                    url:"updateEvent.php",-->
-<!--                    type:"POST",-->
-<!--                    data:{title:title, start:start, end:end, id:id},-->
-<!--                    success:function()-->
-<!--                    {-->
-<!--                        calendar.fullCalendar('refetchEvents');-->
-<!--                        alert("Event Updated");-->
-<!--                    }-->
-<!--                });-->
-<!--            },-->
-
-<!--            eventClick:function(event)-->
-<!--            {-->
-<!--                if(confirm("Are you sure you want to remove it?"))-->
-<!--                {-->
-<!--                    var id = event.id;-->
-<!--                    $.ajax({-->
-<!--                        url:"deleteEvent.php",-->
-<!--                        type:"POST",-->
-<!--                        data:{id:id},-->
-<!--                        success:function()-->
-<!--                        {-->
-<!--                            calendar.fullCalendar('refetchEvents');-->
-<!--                            alert("Event Removed");-->
-<!--                        }-->
-<!--                    })-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-
-<!--</script>-->
-
 <link href='__STATIC__/fullcalendar/packages/core/main.css' rel='stylesheet' />
 <link href='__STATIC__/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 <link href='__STATIC__/fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
@@ -136,13 +25,8 @@
 <br />
     <div id='external-events'>
         <p>
-            <strong>Draggable Events</strong>
+            <strong>Choisir votre cours</strong>
         </p>
-        <div class='fc-event'>Apprendre anglais</div>
-        <div class='fc-event'>My Event 2</div>
-        <div class='fc-event'>My Event 3</div>
-        <div class='fc-event'>My Event 4</div>
-        <div class='fc-event'>My Event 5</div>
     </div>
 
     <div id='calendar-container'>
