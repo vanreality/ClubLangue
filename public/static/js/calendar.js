@@ -1,10 +1,21 @@
+
+
 var container = $("<div>");
 var dragElement = $("<div class='fc-event' data-lan='' data-type=''>");
+
+//the types of the languages
 var languages = ["anglais", "chinois", "français", "allemand", "espagnol", "portugal", "japonais"];
+
+// shorten the expression of languages
 var languages_short = ["en", "zh", "fr", "de", "es", "pt", "jp"];
+
+// the two types of activities
 var type = ["Apprendre", "Enseigner"];
+
 var i, j;
 
+
+//listen the events of adding events by drag and poser
 document.addEventListener('DOMContentLoaded', function() {
     for(i in languages) {
         for (j in type) {
@@ -38,11 +49,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+        //ajuste the head
         header: {
             left: 'dayGridMonth,timeGridWeek', // buttons for switching between views
         },
+
+        //add the plugins
         plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+
+        //set View default
         defaultView: 'timeGridWeek',
+
+        //set the period of the time
         slotDuration: '00:30',
         businessHours: {
             // days of week. an array of zero-based day of week integers (0=Sunday)
@@ -51,13 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
             startTime: '8:00', // a start time
             endTime: '18:00', // an end time
         },
+
+        //shut the allDay events
         allDaySlot: false,
         nowIndicator: true,
+
+        //set editable
         editable:true,
+
+        //set selectable
         selectable:true,
         selectHelper:true,
+
+        //set droppable
         droppable:true,
 
+
+        //load the events from the database
         events: function(info, successCallback, failureCallback){
 
 
@@ -104,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         },
+
+        //delete the event by click the events
         eventClick: function(info) {
 
             if(confirm("Supprimer la réservation/le cours?"))
@@ -142,12 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
-        select: function(info)
-        {
-            //TODO select 与 drag方法类似
-            alert('selected ' + info.startStr + ' to ' + info.endStr);
-        },
-
+        //add the event by drop the event
         drop: function(info) {
             var choice = info.draggedEl.innerHTML.split(" ");
 

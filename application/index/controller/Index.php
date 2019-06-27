@@ -281,38 +281,42 @@ class Index extends Controller
 
     // Part Calendar
 
+    //load event
     public function load_event(){
         return (new \app\index\model\Calendar)->loadEvent();
     }
 
+    //load the event of the referenced user
     public function load_ref_event($ref_id,$type){
         session('ref_id',$ref_id);
         session('type',$type);
         return (new \app\index\model\Calendar)->loadRefEvent($ref_id,$type);
     }
 
+    //change the status of the event of referenced events
     public function update_ref_event($id){
         (new \app\index\model\Calendar)->updateRefEvent($id,session("type"));
     }
 
+    //inser events
     public function insert_event(){
         (new \app\index\model\Calendar)->insertEvent();
     }
 
+    //delete events
     public function delete_event($id){
 
         (new \app\index\model\Calendar)->deleteEvent($id);
     }
 
+    //add event by dragging the event
     public function drag_insert_event($time, $language, $type){
         (new \app\index\model\Calendar)->dragInsertEvent($time, $language, $type);
     }
 
+    //cancel the appointement 
     public function cancel_ref_event($id){
         (new \app\index\model\Calendar)->cancelRefEvent($id);
     }
 
-//    public function load_event_check(){
-//        return (new \app\index\model\Calendar)->loadEventCheck();
-//    }
 }

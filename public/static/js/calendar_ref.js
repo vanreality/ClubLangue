@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         droppable:true,
 
 
+        //load events of the user reference
         events: function(info, successCallback, failureCallback){
             $.ajax({
                 url:'load_ref_event',
@@ -72,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         },
 
+
+        //book a class
         eventClick: function(info) {
 
             if(confirm("Réserver ce cours?"))
@@ -106,6 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render();
 });
+
+//get the parameter
 function getQueryVariable(variable)
 {
     var query = window.location.search.substring(1);
