@@ -92,14 +92,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     }
                 });
-
-
                 if(confirm("laisser un message/ lancer une conversation?")){
-                    window.location="message";
-
+                    $.ajax({
+                        url: 'create_conv',
+                        type: 'POST',
+                        error: function () {
+                            alert("error");
+                        },
+                        success: function (res) {
+                            window.location="message";
+                        }
+                    });
                 }
-
-
             }
         },
 

@@ -239,24 +239,20 @@ class Index extends Controller
         return $content;
     }
 
-    public function createConv(){
-
+    public function create_conv(){
         if (!session('?userinfo')) {
             return null;
         }
-        $user = session('userinfo');
-        $id =  $user['id'];
 
-
-        $user = $id;
-        $ref = session('ref_id');
-        $status = '1';
+        $user_id =  session('userinfo')['id'];
+        $ref_id = session('ref_id');
+        $status = '0';
         $data = [
-            'user_id' => $user,
-            'ref_id' => $ref,
+            'user_id' => $user_id,
+            'ref_id' => $ref_id,
             'status' => $status
         ];
-        $status = (new \app\index\model\Conversation) -> insert($data);
+        (new \app\index\model\Conversation)->insert($data);
     }
 
     public function upMessage(){

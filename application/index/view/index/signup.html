@@ -25,15 +25,15 @@
         <p id="alertEmailNonValid">Cette adresse email n'est pas valide</p>
 
         <p class="signupInfo">Votre pseudo</p>
-        <input id="nameInput" class="inputCase" type="text" name="username" onkeyup="checkUserName();">
+        <input id="nameInput" class="inputCase" type="text" name="username" onkeyup="checkUserName();" autocomplete="username">
         <p id="alertNameShort">Votre pseudo doit contenir au moins 4 caractères</p>
 
         <p class="signupInfo">Votre mot de passe</p>
-        <input id="passInput" class="inputCase" type="password" name="password" onkeyup="checkPass1();">
+        <input id="passInput" class="inputCase" type="password" name="password" onkeyup="checkPass1();" autocomplete="new-password">
         <p id="alertPassLength">Votre mot de passe doit contenir au moins 6 caractères</p>
 
         <p class="signupInfo">Confirmer votre mot de passe</p>
-        <input id="pass2Input" class="inputCase" type="password" name="password_check" onkeyup="verifyPass();permitCreate()">
+        <input id="pass2Input" class="inputCase" type="password" name="password_check" onkeyup="verifyPass();permitCreate()" autocomplete="new-password">
         <p id="alertCheckPass">Le mot de passe ne correspond pas</p>
 
         <input id="btnCreate" type="submit" value="créer votre compte">

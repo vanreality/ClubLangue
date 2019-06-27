@@ -2,22 +2,32 @@
 
 {block name="head"}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    $(document).ready(init);
-</script>
+<script src="__JS__/profile.js"></script>
 {/block}
 
 {block name="container"}
 <main class="container">
 <div id="profileBody">
 
-    <h1 class="profileTitle">votre profile</h1><br />
+    <h1 class="profileTitle">Bienvenue, {php}echo session("userinfo")["username"]{/php} !</h1><br />
 
-    <button  class="profileBtn" name="description" onclick="showDescription();">Modifier votre description</button> <br />
-    <button class="profileBtn" name="modification" onclick="Modifier();">Modifier votre mot de passe</button> <br />
-    <a href="{:url('signout')}">
-        <button  class="profileBtn" name="disconnenct">Se déconnecter</button>
-    </a>
+    <div id="profileButtons">
+        <button class="profileBtn" name="description" onclick="showDescription();">Modifier votre description</button> <br />
+
+<!--        <textarea id="profileDescription"></textarea>-->
+
+        <button class="profileBtn" name="modification" onclick="Modifier();">Modifier votre mot de passe</button> <br />
+
+<!--        <input>-->
+<!--        <br>-->
+<!--        <input>-->
+<!--        <br>-->
+<!--        <input>-->
+
+        <a href="{:url('signout')}">
+            <button  class="profileBtn" name="disconnenct">Se déconnecter</button>
+        </a>
+    </div>
 </div>
 </main>
 {/block}

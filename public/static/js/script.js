@@ -33,13 +33,13 @@ function init() {
     //check when create an account, if all the information needed is OK
     //If one of the conditions is not OK, this button doesn't work
     //and show an alert message
-    createAccount.onclick=function(){
+    createAccount.onclick = function(){
         if(!checkUserEmail() || !checkUserName()  || !checkPass1()  || !verifyPass()){
             alert("votre saisi n'est pas correcte");
             document.createForm.focus();
             return false;
         }
-    }
+    };
 }
 
 //from the top scroll to the section1
