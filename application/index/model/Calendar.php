@@ -20,17 +20,21 @@ class Calendar extends Model
     }
 
     public function loadEvent(){
-        $res = Db::query("select * from events");
+        $res = Db::query("select * from calendar");
         foreach($res as $row)
         {
             $data[] = array(
                 'id'   => $row["id"],
-                'title'   => $row["title"],
-                'start'   => $row["start_event"],
-                'end'   => $row["end_event"]
+                'user_id'   => $row["user_id"],
+                'ref_id'   => $row["ref_id"],
+                'status'   => $row["status"],
+                'time'     =>$row['time'],
+                'language'    =>$row['language'],
+                'type'     =>$row['type']
             );
         }
         View::share("load",json_encode($data));
+        console.log("true");
 
         return json_encode($res);
     }

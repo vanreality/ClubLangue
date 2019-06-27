@@ -41,6 +41,24 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable:true,
         selectHelper:true,
         droppable:true,
+        // events:"{load}",
+        events: function(){
+            $.ajax({
+                url:'load_event',
+                method: 'POST',
+                error:function(){
+                    alert("error");
+                },
+                success: function(){
+                    alert("yes");
+                }
+
+
+            })
+
+
+
+        },
 
         select: function(info)
         {
