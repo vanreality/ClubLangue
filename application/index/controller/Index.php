@@ -132,8 +132,8 @@ class Index extends Controller
         }
     }
 
-    public function search_to_calendar($ref_id) {
-        $this->assign("ref_id", $ref_id);
+    public function search_to_calendar() {
+        $this->assign("ref_id", session("ref_id"));
         //TODO fetch ref_id calendar
        return $this->fetch('calendar_ref');
     }
@@ -285,9 +285,16 @@ class Index extends Controller
         return (new \app\index\model\Calendar)->loadEvent();
     }
 
-    public function load_ref_event($ref_id){
-        return (new \app\index\model\Calendar)->loadRefEvent($ref_id);
+    public function load_ref_event($ref_id,$type){
+        session('ref_id',$ref_id);
+        session('type',$type);
+        return (new \app\index\model\Calendar)->loadRefEvent($ref_id,$type);
     }
+
+    public function update_ref_event($id){
+        (new \app\index\model\Calendar)->updateRefEvent($id,session("type"));
+    }
+
     public function insert_event(){
         (new \app\index\model\Calendar)->insertEvent();
     }
@@ -300,4 +307,12 @@ class Index extends Controller
     public function drag_insert_event($time, $language, $type){
         (new \app\index\model\Calendar)->dragInsertEvent($time, $language, $type);
     }
+
+    public function cancel_ref_event($id){
+        (new \app\index\model\Calendar)->cancelRefEvent($id);
+    }
+
+//    public function load_event_check(){
+//        return (new \app\index\model\Calendar)->loadEventCheck();
+//    }
 }

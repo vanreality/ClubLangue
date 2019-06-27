@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         droppable:true,
 
         events: function(info, successCallback, failureCallback){
+
+
             $.ajax({
                 url:'load_event',
                 method: 'POST',
@@ -79,36 +81,67 @@ document.addEventListener('DOMContentLoaded', function() {
                                 }
                             }
 
+                            if(res[i].status==1){
+                                Color='#278006';
+                            }
+                            else {
+                               Color='#064780';
+                            }
                             events.push({
                                 id:res[i].id,
                                 start: time,
+                                description:res[i].status + "",
                                 title: type[res[i].type] + " " + lan,
+                                color: Color,
                             });
                         }
+
                         successCallback(events);
                     }
 
                 }
-            })
+            });
+
+
         },
         eventClick: function(info) {
 
-            if(confirm(""+info.event.id))
+            if(confirm("Supprimer la réservation/le cours?"))
             {
                 var id = info.event.id;
-                $.ajax({
-                    url:"delete_event",
-                    type:"POST",
-                    data:{id:id},
-                    success:function()
-                    {
-                        // calendar.fullCalendar('refetchEvents');
-                        calendar.refetchEvents();
-                        alert("Event Removed");
-                    }
-                })
+                console.log(info.event.extendedProps.description);
+                if(info.event.extendedProps.description === "1"){
+                    $.ajax({
+                        url: 'cancel_ref_event',
+                        type: 'POST',
+                        data:{
+                            id:info.event.id,
+                        },
+                        error: function () {
+                            alert("error");
+                        },
+                        success: function (res) {
+                            calendar.refetchEvents();
+                        }
+                    });
+                }
+                else{
+                    $.ajax({
+                        url:"delete_event",
+                        type:"POST",
+                        data:{id:id},
+                        success:function()
+                        {
+                            // calendar.fullCalendar('refetchEvents');
+                            calendar.refetchEvents();
+                            alert("Event Removed");
+                        }
+                    })
+                }
+
             }
         },
+
         select: function(info)
         {
             //TODO select 与 drag方法类似
