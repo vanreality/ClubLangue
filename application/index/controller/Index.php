@@ -207,7 +207,10 @@ class Index extends Controller
         $id =  $user['id'];
 
         $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
-        /** Envoyer en meme temps les id de utilisateur a la fin de tableau **/
+        /** Envoyer en meme temps les id de utilisateur a la fin de tableau
+         * ici on utilise la fonction array_push pour conbiner la tableau de conversation
+         * avec id de l'utilisateur
+         */
         array_push($conv,$id);
         return $conv;
     }
@@ -232,7 +235,9 @@ class Index extends Controller
             /** obtenir les infos des autres personnes dans la tableau user **/
             $per = User::get($ref)->toArray();
             array_push($person, $per);
-            /** obtenir les infos des autres personnes dans la tableau user **/
+            /** sachant que les donnees rendus de la reponse de php sont des tableau
+             * donc on conbine les tableaux par +
+             */
             $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
             $content += $mes;
         }
@@ -259,10 +264,20 @@ class Index extends Controller
         $status = (new \app\index\model\Conversation) -> insert($data);
     }
 
+
+    /** cette fonction est pour maj les donnees de conversation **/
+    public function upConversation(){
+        $cov_id = trim(input('cov_id'));
+        $statu = trim(input('statu'));
+        (new \app\index\model\Conversation)->upConvStatus($cov_id,$statu);
+    }
+
+    /** cette fonction est pour maj les donnees de message avec le conversation**/
     public function upMessage(){
         $speaker = trim(input('speaker'));
         $cov_id = trim(input('cov_id'));
         $content = trim(input('content'));
+        $statu = trim(input('statu'));
 
         $data = [
             'cov_id'    => $cov_id,
@@ -271,6 +286,8 @@ class Index extends Controller
         ];
 
         $status = (new \app\index\model\Message) -> insert($data);
+        (new \app\index\model\Conversation)->upConvStatus($cov_id,$statu);
+
 
         if ($status == 1) {
 
