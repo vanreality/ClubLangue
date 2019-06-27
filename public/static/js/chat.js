@@ -183,6 +183,12 @@ $(document).on('click','input[name=message]',function(){
     $(".active-chat").css('justify-content','flex-end');
 });
 
+$('input[name=message]').keydown(function(event){
+    if(event.keyCode == 13){
+        sentMessage();
+    }
+});
+
 function sentMessage() {
   var mes = $("input[name=message]").val();
 
