@@ -301,7 +301,11 @@ class Index extends Controller
         (new \app\index\model\Calendar)->dragInsertEvent($time, $language, $type);
     }
 
-    public function cancel_ref_event($ref_id){
-
+    public function cancel_ref_event($id){
+        (new \app\index\model\Calendar)->cancelRefEvent($id);
     }
+
+//    public function load_event_check(){
+//        return (new \app\index\model\Calendar)->loadEventCheck();
+//    }
 }

@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         droppable:true,
 
         events: function(info, successCallback, failureCallback){
+
+
             $.ajax({
                 url:'load_event',
                 method: 'POST',
@@ -78,14 +80,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                     lan = languages[j];
                                 }
                             }
-                            var color;
+
                             if(res[i].status==1){
                                 Color='#278006';
                             }
                             else {
-                                Color='#064780';
+                               Color='#064780';
                             }
-
                             events.push({
                                 id:res[i].id,
                                 start: time,
@@ -94,11 +95,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                 color: Color,
                             });
                         }
+
                         successCallback(events);
                     }
 
                 }
-            })
+            });
+
+
         },
         eventClick: function(info) {
 
@@ -111,13 +115,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         url: 'cancel_ref_event',
                         type: 'POST',
                         data:{
-                            ref_id:info.event.id,
+                            id:info.event.id,
                         },
                         error: function () {
                             alert("error");
                         },
                         success: function (res) {
-
+                            calendar.refetchEvents();
                         }
                     });
                 }

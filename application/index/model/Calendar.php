@@ -25,18 +25,25 @@ class Calendar extends Model
     }
 
     public function loadEvent(){
+
         $idload = session('userinfo')["id"];
-        $res2=Calendar::where('user_id',$idload)->select();
 
         $res1=Calendar::where("ref_id",$idload)->select();
 
-        $res=[];
+        $res2=Calendar::where('user_id',$idload)->select();
 
-        $res=$res1+$res2;
-        //array_merge($res,$res1,$res2);
-
+        $res=array_merge($res1,$res2);
         return $res;
     }
+
+//    public function loadEventCheck(){
+//
+//        $idload = session('userinfo')["id"];
+//
+//
+//        return $res1;
+//    }
+
     public function loadRefEvent($ref_id, $type){
         switch ($type){
             case "apprendre":
@@ -53,19 +60,16 @@ class Calendar extends Model
         return $res;
     }
 
-    public function updateRefEvent($id,$type){
-//        if($type==0)
+    public function updateRefEvent($id){
+
         Calendar::where("id",$id)->data("status",1)->update();
-//        else{
-//            Calendar::where("id",$id)->data("type",0)->update();
-//        }
         Calendar::where("id",$id)->data("ref_id",session('userinfo')["id"])->update();
 
     }
 
-    public function cancelRefEvent($ref_id){
-        Calendar::where("ref_id",$ref_id)->data("status",0)->update();
-        Calendar::where("ref_id",$ref_id)->data("ref_id",null)->update();
+    public function cancelRefEvent($id){
+        Calendar::where("id",$id)->data("status",0)->update();
+        Calendar::where("id",$id)->data("ref_id",null)->update();
 
     }
 
