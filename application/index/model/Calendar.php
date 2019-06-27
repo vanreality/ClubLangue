@@ -5,12 +5,14 @@ namespace app\index\model;
 
 use think\Model;
 use think\Db;
+use think\Session;
 use think\View;
+
 class Calendar extends Model
 {
     protected $field = true;
     public function insertEvent(){
-
+        //TODO select insert
         $db = Db::name("events");
         $db ->insertGetId([
             'title'=>'Todo',
@@ -18,29 +20,22 @@ class Calendar extends Model
             'end_event'=>'2019-06-25 06:00:00',
         ]);
     }
-
-    public function loadEvent(){
-        $res = Db::query("select * from events");
-        foreach($res as $row)
-        {
-            $data[] = array(
-                'id'   => $row["id"],
-                'title'   => $row["title"],
-                'start'   => $row["start_event"],
-                'end'   => $row["end_event"]
-            );
-        }
-        View::share("load",json_encode($data));
-
-        return json_encode($res);
+    public function deleteEvent($id){
+        Calendar::where("id",$id)->delete();
     }
 
-    public function dragInsertEvent($time){
+    public function loadEvent(){
+        $idload = session('userinfo')["id"];
+        $res=Calendar::where('user_id',$idload)->select();
+        return $res;
+    }
+
+    public function dragInsertEvent($time, $language, $type){
         $data = [
-            'user_id'   => 3,
+            'user_id'   => session("userinfo")["id"],
             'time'      => $time,
-            'language'  => "en",
-            'type'      => 0
+            'language'  => $language,
+            'type'      => $type
         ];
         Calendar::insert($data);
     }
