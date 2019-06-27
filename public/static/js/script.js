@@ -14,6 +14,8 @@ var arrowScroll;
 var createAccount;
 
 
+
+
 function init() {
     scrollSection1 = document.getElementById("divideSection1");
     scrollSection2 = document.getElementById("divideSection2");
@@ -29,6 +31,7 @@ function init() {
     checkPass = document.getElementById("alertCheckPass");
     arrowScroll = document.getElementById("mainSection");
     createAccount = document.getElementById("btnCreate");
+
 
     createAccount.onclick=function(){
         if(!checkUserEmail() || !checkUserName()  || !checkPass1()  || !verifyPass()){
@@ -114,3 +117,6 @@ function verifyPass() {
 function toTop() {
     arrowScroll.scrollIntoView();
 }
+
+
+
