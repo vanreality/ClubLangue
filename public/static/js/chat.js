@@ -52,30 +52,31 @@ function allCov(data){
         var friend = friends.list.querySelector('[data-chat="' + id + '"]');
         var time = friend.querySelector('.time');
         var length = data[cov_id].length;
-        var date = data[cov_id][length-1].time.substr(5,16);
-        $(time).html(date);
+        if(length>0) {
+            var date = data[cov_id][length - 1].time.substr(5, 16);
+            $(time).html(date);
 
-        for (i = 0; i < data[cov_id].length; i++) {
-            var dataM = data[cov_id];
-            var dSpeakId = dataM[i].speaker_id;
+            for (i = 0; i < data[cov_id].length; i++) {
+                var dataM = data[cov_id];
+                var dSpeakId = dataM[i].speaker_id;
 
-            if (dSpeakId == id) {
-                var time = $('<span>::before').html(dataM[i].time);
-                var start = $('<div class="conversation-start">');
-                start.append(time);
-                $(c).append(start);
-                var divM = $('<div class="bubble you">').html(dataM[i].content);
-                $(c).append(divM);
-            } else {
-                var time = $('<span>::before').html(dataM[i].time);
-                var start = $('<div class="conversation-start">');
-                start.append(time);
-                $(c).append(start);
-                var divY = $('<p class="bubble me">').html(dataM[i].content);
-                $(c).append(divY);
+                if (dSpeakId == id) {
+                    var time = $('<span>::before').html(dataM[i].time);
+                    var start = $('<div class="conversation-start">');
+                    start.append(time);
+                    $(c).append(start);
+                    var divM = $('<div class="bubble you">').html(dataM[i].content);
+                    $(c).append(divM);
+                } else {
+                    var time = $('<span>::before').html(dataM[i].time);
+                    var start = $('<div class="conversation-start">');
+                    start.append(time);
+                    $(c).append(start);
+                    var divY = $('<p class="bubble me">').html(dataM[i].content);
+                    $(c).append(divY);
+                }
             }
         }
-
     });
 }
 
@@ -103,26 +104,28 @@ function actualiseCov(data){
         var time = friend.querySelector('.time');
         var etat = friend.querySelector('.etatDeCov');
         var length = data[cov_id].length;
-        var date = data[cov_id][length-1].time.substr(5,16);
+        if(length>0) {
+            var date = data[cov_id][length - 1].time.substr(5, 16);
 
-        if($(time).html() != date){
-            $(time).html(date);
-            var dataM = data[cov_id];
-            var dSpeakId = dataM[length-1].speaker_id;
+            if ($(time).html() != date) {
+                $(time).html(date);
+                var dataM = data[cov_id];
+                var dSpeakId = dataM[length - 1].speaker_id;
 
-            if (dSpeakId == id) {
-                var time = $('<span>::before').html(dataM[length-1].time);
-                var start = $('<div class="conversation-start">');
-                start.append(time);
-                $(c).append(start);
-                var divM = $('<div class="bubble you">').html(dataM[length-1].content);
-                $(c).append(divM);
-            } else {
+                if (dSpeakId == id) {
+                    var time = $('<span>::before').html(dataM[length - 1].time);
+                    var start = $('<div class="conversation-start">');
+                    start.append(time);
+                    $(c).append(start);
+                    var divM = $('<div class="bubble you">').html(dataM[length - 1].content);
+                    $(c).append(divM);
+                } else {
 
-            }
+                }
 
-            if(c.getAttribute('class') == 'chat'){
-                $(etat).css('background','red');
+                if (c.getAttribute('class') == 'chat') {
+                    $(etat).css('background', 'red');
+                }
             }
         }
     });
