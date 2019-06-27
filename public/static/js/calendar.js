@@ -101,20 +101,39 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         eventClick: function(info) {
 
-            if(confirm(""+info.event.id))
+            if(confirm("Supprimer la réservation/le cours?"))
             {
                 var id = info.event.id;
-                $.ajax({
-                    url:"delete_event",
-                    type:"POST",
-                    data:{id:id},
-                    success:function()
-                    {
-                        // calendar.fullCalendar('refetchEvents');
-                        calendar.refetchEvents();
-                        alert("Event Removed");
-                    }
-                })
+
+                if(info.event.status==1){
+                    $.ajax({
+                        url: 'cancel_ref_event',
+                        type: 'POST',
+                        data:{
+                            ref_id:info.event.id,
+                        },
+                        error: function () {
+                            alert("error");
+                        },
+                        success: function (res) {
+
+                        }
+                    });
+                }
+                else{
+                    $.ajax({
+                        url:"delete_event",
+                        type:"POST",
+                        data:{id:id},
+                        success:function()
+                        {
+                            // calendar.fullCalendar('refetchEvents');
+                            calendar.refetchEvents();
+                            alert("Event Removed");
+                        }
+                    })
+                }
+
             }
         },
         select: function(info)

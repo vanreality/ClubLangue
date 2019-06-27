@@ -54,12 +54,18 @@ class Calendar extends Model
     }
 
     public function updateRefEvent($id,$type){
-        if($type==0)
+//        if($type==0)
         Calendar::where("id",$id)->data("status",1)->update();
-        else{
-            Calendar::where("id",$id)->data("status",0)->update();
-        }
+//        else{
+//            Calendar::where("id",$id)->data("type",0)->update();
+//        }
         Calendar::where("id",$id)->data("ref_id",session('userinfo')["id"])->update();
+
+    }
+
+    public function cancelRefEvent($ref_id){
+        Calendar::where("ref_id",$ref_id)->data("status",0)->update();
+        Calendar::where("ref_id",$ref_id)->data("ref_id",null)->update();
 
     }
 

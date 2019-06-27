@@ -300,4 +300,8 @@ class Index extends Controller
     public function drag_insert_event($time, $language, $type){
         (new \app\index\model\Calendar)->dragInsertEvent($time, $language, $type);
     }
+
+    public function cancel_ref_event($ref_id){
+
+    }
 }
