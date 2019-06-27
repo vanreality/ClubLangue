@@ -125,9 +125,17 @@ class Index extends Controller
             $type = trim(input("type"));
             $language = trim(input("language"));
 
-            //TODO 根据类型和语言查询数据库
+            switch ($type) {
+                case "apprendre":
+                    $type = 0;
+                    break;
+                case "enseigner":
+                    $type = 1;
+                    break;
+            }
 
-            $users = User::all();
+            $users = (new \app\index\model\User)->searchUser($type, $language);
+//            dump($users);
             $this->assign("users", $users);
             return $this->fetch();
         }
