@@ -6,6 +6,7 @@ namespace app\index\model;
 use think\Model;
 use think\Db;
 use think\View;
+
 class Calendar extends Model
 {
     protected $field = true;
@@ -21,6 +22,7 @@ class Calendar extends Model
 
     public function loadEvent(){
         //TODO query要根据用户id
+
         $res = Db::query("select * from calendar");
 //        foreach($res as $row)
 //        {
@@ -40,12 +42,12 @@ class Calendar extends Model
         return $res;
     }
 
-    public function dragInsertEvent($time){
+    public function dragInsertEvent($time, $language, $type){
         $data = [
-            'user_id'   => 3,
+            'user_id'   => session("userinfo")["id"],
             'time'      => $time,
-            'language'  => "en",
-            'type'      => 0
+            'language'  => $language,
+            'type'      => $type
         ];
         Calendar::insert($data);
     }
