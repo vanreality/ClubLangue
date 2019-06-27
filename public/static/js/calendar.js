@@ -41,23 +41,25 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable:true,
         selectHelper:true,
         droppable:true,
-        // events:"{load}",
-        events: function(){
+
+        events: function(info, successCallback, failureCallback){
             $.ajax({
                 url:'load_event',
                 method: 'POST',
                 error:function(){
                     alert("error");
                 },
-                success: function(){
-                    alert("yes");
+                success: function(res){
+                    var events = [];
+                    var time = new Date(res[0].time.replace(" ", "T"));
+                    //TODO 循环res
+                    events.push({
+                        start: time,
+                        title: res[0].language,
+                    });
+                    successCallback(events);
                 }
-
-
             })
-
-
-
         },
 
         select: function(info)
