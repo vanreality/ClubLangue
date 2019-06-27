@@ -41,7 +41,14 @@
 			//echo " ";
 			//echo $langue;
 			echo "</span></caption>";
+
+    if(empty($users)){
+    echo '<p id="nonResultAlert">Aucun résultat trouvé! Veuillez essayer encore une fois avec vos préférences</p>';
+    }
+
 foreach($users as $val) {
+
+
     echo '<table id="searchTable">';
 
         echo "<tr>";

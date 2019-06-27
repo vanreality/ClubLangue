@@ -17,7 +17,7 @@
         </a>
     </div>
 
-    <form id="createAccount" method="post" action="{:url('signup_check')}">
+    <form id="createAccount" method="post" action="{:url('signup_check')}" name="createForm">
         <p class="signupInfo">Adresse email</p>
         <input id="emailInput" class="inputCase" type="text" name="email" onkeyup="checkUserEmail();">
         <p id="alertEmailVide">Ce champ est vide, veuillez le renseigner</p>
@@ -32,7 +32,7 @@
         <p id="alertPassLength">Votre mot de passe doit contenir au moins 6 caractères</p>
 
         <p class="signupInfo">Confirmer votre mot de passe</p>
-        <input id="pass2Input" class="inputCase" type="password" name="password_check" onkeyup="verifyPass();">
+        <input id="pass2Input" class="inputCase" type="password" name="password_check" onkeyup="verifyPass();permitCreate()">
         <p id="alertCheckPass">Le mot de passe ne correspond pas</p>
 
         <input id="btnCreate" type="submit" value="créer votre compte">
