@@ -72,6 +72,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if(confirm("Réserver ce cours?"))
             {
+                $.ajax({
+                    url: 'update_ref_event',
+                    type: 'POST',
+                    data:{
+                        id:info.event.id,
+                    },
+                    error: function () {
+                        alert("error");
+                    },
+                    success: function (res) {
+
+                    }
+                });
 
 
                 if(confirm("laisser un message/ lancer une conversation?")){
@@ -89,13 +102,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render();
 });
-function getQueryVariable(variable)
-{
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i=0;i<vars.length;i++) {
-        var pair = vars[i].split("=");
-        if(pair[0] == variable){return pair[1];}
-    }
-    return(false);
-}

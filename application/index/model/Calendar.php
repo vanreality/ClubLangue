@@ -46,6 +46,10 @@ class Calendar extends Model
         return $res;
     }
 
+    public function updateRefEvent($id){
+        Calendar::where("id",$id)->data("status",1)->update;
+    }
+
     public function dragInsertEvent($time, $language, $type){
         $data = [
             'user_id'   => session("userinfo")["id"],

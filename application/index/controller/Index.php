@@ -282,6 +282,11 @@ class Index extends Controller
     public function load_ref_event(){
         return (new \app\index\model\Calendar)->loadRefEvent();
     }
+
+    public function update_ref_event($id){
+        (new \app\index\model\Calendar)->updateRefEvent($id);
+    }
+
     public function insert_event(){
         (new \app\index\model\Calendar)->insertEvent();
     }

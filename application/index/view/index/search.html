@@ -50,6 +50,7 @@ foreach($users as $val) {
                 echo "</th>";
             echo '<th rowspan="2">';
                     $url = "search_to_calendar?ref_id=" . $val["id"];
+                    echo"<a id=\"toCalendar\" href=\"".$url.'">calendar</a>
                     session("ref_id", $val["id"]);
                     session("type", $_POST["type"]);
                     echo '<a id="toCalendar" href="search_to_calendar">calendar</a>';
