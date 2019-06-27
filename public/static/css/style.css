@@ -67,6 +67,7 @@ html, body{
     padding-top: 23%;padding-left: 5%;
     float: left;
     color:#948e3b;
+
 }
 #sectionTextRight{
     text-align: center;
@@ -82,7 +83,7 @@ html, body{
     float: right;
     margin-right: 10%;
     color: #ecd5d4;
-    font-size: 2em;
+    font-size: 2rem;
     border-radius: 15px;
     outline: medium;
 }
@@ -93,7 +94,7 @@ html, body{
     float: left;
     margin-left: 10%;
     color: #f3f3f3;
-    font-size: 2em;
+    font-size: 2rem;
     border-radius: 15px;
     outline: medium;
 }
@@ -104,7 +105,7 @@ html, body{
     height: 20%;
     color: #f3f3f3;
     font-weight: bold;
-    font-size: 3.3em;
+    font-size: 3.3rem;
     text-align: center;
     padding-top: 10%;
     padding-left: 20%;
@@ -131,7 +132,7 @@ html, body{
     float: right;
     margin-right: 10%;
     color: #75c4c6;
-    font-size: 2em;
+    font-size: 2rem;
     border-radius: 15px;
     outline: medium;
 }
@@ -141,7 +142,7 @@ html, body{
     float: left;
     margin-left: 10%;
     color: #75c4c6;
-    font-size: 2em;
+    font-size: 2rem;
     border-radius: 15px;
     outline: medium;
 }
@@ -316,7 +317,7 @@ html, body{
     margin-left: 5%;
 }
 
-#alertEmailVide{
+#alertemailVide{
     font-size:10px;
     display: none;
     color: red;
