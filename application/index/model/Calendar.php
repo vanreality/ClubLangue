@@ -20,10 +20,13 @@ class Calendar extends Model
             'end_event'=>'2019-06-25 06:00:00',
         ]);
     }
+    public function deleteEvent($id){
+        Calendar::where("id",$id)->delete();
+    }
 
     public function loadEvent(){
-        $id = session('userinfo')["id"];
-        $res=Calendar::where('user_id',$id)->select();
+        $idload = session('userinfo')["id"];
+        $res=Calendar::where('user_id',$idload)->select();
         return $res;
     }
 

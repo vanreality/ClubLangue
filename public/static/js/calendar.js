@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
 
                             events.push({
+                                id:res[i].id,
                                 start: time,
                                 title: type[res[i].type] + " " + lan,
                             });
@@ -90,7 +91,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
         },
+        eventClick: function(info) {
 
+            if(confirm(""+info.event.id))
+            {
+                var id = info.event.id;
+                $.ajax({
+                    url:"delete_event",
+                    type:"POST",
+                    data:{id:id},
+                    success:function()
+                    {
+                        // calendar.fullCalendar('refetchEvents');
+                        calendar.refetchEvents();
+                        alert("Event Removed");
+                    }
+                })
+            }
+            // var eventObj = info.event;
+            //
+            // if (eventObj.url) {
+            //     alert(
+            //         'Clicked ' + eventObj.title + '.\n' +
+            //         'Will open ' + eventObj.url + ' in a new tab'
+            //     );
+            //
+            //     window.open(eventObj.url);
+            //
+            //     info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+            // } else {
+            //     alert('Clicked ' + eventObj.title);
+            // }
+        },
         select: function(info)
         {
             //TODO select 与 drag方法类似
