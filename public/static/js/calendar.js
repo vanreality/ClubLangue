@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     var Draggable = FullCalendarInteraction.Draggable;
 
     var containerEl = document.getElementById('external-events');
@@ -51,13 +52,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 success: function(res){
                     var events = [];
-                    var time = new Date(res[0].time.replace(" ", "T"));
-                    //TODO 循环res
-                    events.push({
-                        start: time,
-                        title: res[0].language,
-                    });
-                    successCallback(events);
+                    var i=0;
+                    if(res!=null){
+                        // for(var i=0;i<res.size;i++){
+                        for (i in res){
+                            var time = new Date(res[i].time.replace(" ", "T"));
+                            events.push({
+                                start: time,
+                                title: res[i].language,
+                            });
+                        }
+                        successCallback(events);
+
+                        // }
+                    }
+
                 }
             })
         },

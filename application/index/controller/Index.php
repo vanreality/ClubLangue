@@ -12,8 +12,9 @@ class Index extends Controller
 {
     public function index()
     {
+        dump(Session::get("userinfo.id"));
+
         return $this->fetch();
-        dump(new \app\index\model\Calendar)->loadEvent();
     }
 
     public function index_btn(){
