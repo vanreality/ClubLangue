@@ -67,7 +67,6 @@ html, body{
     padding-top: 23%;padding-left: 5%;
     float: left;
     color:#948e3b;
-
 }
 #sectionTextRight{
     text-align: center;
@@ -83,7 +82,7 @@ html, body{
     float: right;
     margin-right: 10%;
     color: #ecd5d4;
-    font-size: 2rem;
+    font-size: 2em;
     border-radius: 15px;
     outline: medium;
 }
@@ -94,7 +93,7 @@ html, body{
     float: left;
     margin-left: 10%;
     color: #f3f3f3;
-    font-size: 2rem;
+    font-size: 2em;
     border-radius: 15px;
     outline: medium;
 }
@@ -105,7 +104,7 @@ html, body{
     height: 20%;
     color: #f3f3f3;
     font-weight: bold;
-    font-size: 3.3rem;
+    font-size: 3.3em;
     text-align: center;
     padding-top: 10%;
     padding-left: 20%;
@@ -132,7 +131,7 @@ html, body{
     float: right;
     margin-right: 10%;
     color: #75c4c6;
-    font-size: 2rem;
+    font-size: 2em;
     border-radius: 15px;
     outline: medium;
 }
@@ -142,7 +141,7 @@ html, body{
     float: left;
     margin-left: 10%;
     color: #75c4c6;
-    font-size: 2rem;
+    font-size: 2em;
     border-radius: 15px;
     outline: medium;
 }
@@ -179,33 +178,32 @@ html, body{
 /*partie profile.html*/
 #profileBody{
     background-color: #f3f3f3;
-    weight:100%;
-    height:100%;
-    padding-top: 20%;
+    width:100%;
+    height:70%;
+    padding-top:15%;
+    text-align: center;
 
 }
-
-.profileTitle{
-    margin-left: 42%;
+#profileBody h1{
+    font-size:30px;
     color:#5c81a4;
-    font-size: 2.5rem;
 }
-.profileBtn{
-    margin-left: 30%;
-    color:#5c81a4;
-    height: 10%;
-    width: 40%;
-    border: 1px solid #5c81a4;
-    border-radius: 15px;
-    font-size: 25px;
-    outline: medium;
-    text-indent: 20px;
-    margin-top:2%;
 
+#profileForm {
+    width:50%;
+    height:50%;
+    margin:auto;
 }
-.profileBtn:hover{
-    background-color:#5c81a4 ;
-    color: #f3f3f3;
+
+#profileForm input{
+    color: #5c81a4;
+    border: 3px solid #5c81a4 ;
+    border-radius: 5px;
+    background-color:#f3f3f3;
+    width:40%;
+    height:10%;
+    margin-top:30px;
+    font-size:80%;
 }
 
 /*partie signin.html*/
@@ -239,7 +237,7 @@ html, body{
 #toMdp{
     text-decoration: underline;
 }
-.inputCase{
+.inputCase {
     height: 10%;
     width: 90%;
     border: 1px solid #5c81a4;
@@ -247,9 +245,11 @@ html, body{
     font-size: 25px;
     outline: medium;
     text-indent: 20px;
-
 }
-
+#calendar {
+    width: 900px;
+    margin: 20px auto 10px auto;
+}
 #btnConnex{
     margin-top: 35px;
     height: 10%;
@@ -319,7 +319,7 @@ html, body{
     margin-left: 5%;
 }
 
-#alertemailVide{
+#alertEmailVide{
     font-size:10px;
     display: none;
     color: red;
