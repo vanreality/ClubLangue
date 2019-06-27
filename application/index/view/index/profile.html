@@ -1,15 +1,22 @@
 {extend name="common/base" /}
 
+{block name="head"}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(init);
+</script>
+{/block}
+
 {block name="container"}
 <main class="container">
 <div id="profileBody">
 
-    <h1>votre profile</h1><br />
+    <h1 class="profileTitle">votre profile</h1><br />
 
-    <button id="descriptionBtn" name="description">Modifier votre description</button>
-    <button  id="modifierBtn"  name="modification">Modifier votre mot de passe</button>
+    <button  class="profileBtn" name="description" onclick="showDescription();">Modifier votre description</button> <br />
+    <button class="profileBtn" name="modification" onclick="Modifier();">Modifier votre mot de passe</button> <br />
     <a href="{:url('signout')}">
-        <button name="disconnenct">Se déconnecter</button>
+        <button  class="profileBtn" name="disconnenct">Se déconnecter</button>
     </a>
 </div>
 </main>

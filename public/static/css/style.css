@@ -179,32 +179,33 @@ html, body{
 /*partie profile.html*/
 #profileBody{
     background-color: #f3f3f3;
-    width:100%;
-    height:70%;
-    padding-top:15%;
-    text-align: center;
+    weight:100%;
+    height:100%;
+    padding-top: 20%;
 
 }
-#profileBody h1{
-    font-size:30px;
+
+.profileTitle{
+    margin-left: 42%;
     color:#5c81a4;
+    font-size: 2.5rem;
 }
+.profileBtn{
+    margin-left: 30%;
+    color:#5c81a4;
+    height: 10%;
+    width: 40%;
+    border: 1px solid #5c81a4;
+    border-radius: 15px;
+    font-size: 25px;
+    outline: medium;
+    text-indent: 20px;
+    margin-top:2%;
 
-#profileForm {
-    width:50%;
-    height:50%;
-    margin:auto;
 }
-
-#profileForm input{
-    color: #5c81a4;
-    border: 3px solid #5c81a4 ;
-    border-radius: 5px;
-    background-color:#f3f3f3;
-    width:40%;
-    height:10%;
-    margin-top:30px;
-    font-size:80%;
+.profileBtn:hover{
+    background-color:#5c81a4 ;
+    color: #f3f3f3;
 }
 
 /*partie signin.html*/
