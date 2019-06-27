@@ -13,7 +13,7 @@
         <div class="left">
             <div class="top">
                 <input type="text" placeholder="Search" />
-                <a href="javascript:;" class="search"></a>
+                <a href="javascript:searchPerson();" class="search"></a>
             </div>
             <ul class="people">
                 {php}
@@ -22,7 +22,7 @@
                 $li = '<li class="person" data-chat=' . $val["id"] . '>';
                 echo($li);
 
-                echo('<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" alt="" />');
+                echo('<img src="__STATIC__/img/header_user.png" alt="" />');
 
                 echo('<span class="name">');
                     echo($val["username"]);
@@ -34,6 +34,9 @@
                     echo($val["description"]);
                 echo('</span>');
 
+                echo('<div class="etatDeCov">');
+                echo('</div>');
+
                 echo('</li>');
                 }
                 {/php}
@@ -41,10 +44,12 @@
         </div>
 
         <div class="right">
-            <div class="top"><span>To: <span class="name">  </span></span></div>
+            <div class="top">
+                <span>To: <span class="name">  </span></span>
+                <input type="button" class="showMore" value="show more infos" onclick="showMore()">
+            </div>
 
             <div class="write">
-                <a href="javascript:allMessage();" class="write-link attach"></a>
                 <input name="message" type="text" />
                 <a href="javascript:sentMessage();" class="write-link send"></a>
             </div>

@@ -240,15 +240,22 @@ class Index extends Controller
     }
 
     public function createConv(){
-        $user = trim(input('user'));
-        $ref = trim(input('ref'));
-        $status = trim(input('id'));
+
+        if (!session('?userinfo')) {
+            return null;
+        }
+        $user = session('userinfo');
+        $id =  $user['id'];
+
+
+        $user = $id;
+        $ref = session('ref_id');
+        $status = '1';
         $data = [
             'user_id' => $user,
             'ref_id' => $ref,
             'status' => $status
         ];
-
         $status = (new \app\index\model\Conversation) -> insert($data);
     }
 
@@ -301,7 +308,11 @@ class Index extends Controller
         (new \app\index\model\Calendar)->dragInsertEvent($time, $language, $type);
     }
 
-    public function cancel_ref_event($ref_id){
-
+    public function cancel_ref_event($id){
+        (new \app\index\model\Calendar)->cancelRefEvent($id);
     }
+
+//    public function load_event_check(){
+//        return (new \app\index\model\Calendar)->loadEventCheck();
+//    }
 }
