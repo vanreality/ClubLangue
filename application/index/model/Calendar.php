@@ -7,11 +7,12 @@ use think\Model;
 use think\Db;
 use think\Session;
 use think\View;
+
 class Calendar extends Model
 {
     protected $field = true;
     public function insertEvent(){
-
+        //TODO select insert
         $db = Db::name("events");
         $db ->insertGetId([
             'title'=>'Todo',
@@ -22,16 +23,16 @@ class Calendar extends Model
 
     public function loadEvent(){
         $id = session('userinfo')["id"];
-        $res=Calendar::where('user_id','like',$id)->select();
+        $res=Calendar::where('user_id',$id)->select();
         return $res;
     }
 
-    public function dragInsertEvent($time){
+    public function dragInsertEvent($time, $language, $type){
         $data = [
-            'user_id'   => 3,
+            'user_id'   => session("userinfo")["id"],
             'time'      => $time,
-            'language'  => "en",
-            'type'      => 0
+            'language'  => $language,
+            'type'      => $type
         ];
         Calendar::insert($data);
     }

@@ -29,6 +29,9 @@ foreach($users as $val) {
             echo "</tr>";
         echo "</table>";
     echo('</div>');
+
+    $url = "search_to_calendar?ref_id=" . $val["id"];
+    echo "<a href=\"" . $url . '">calendar</a>';
 }
 {/php}
 </main>

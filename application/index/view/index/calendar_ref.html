@@ -1,7 +1,6 @@
 {extend name="common/base" /}
 
 {block name="head"}
-
 <link href='__STATIC__/fullcalendar/packages/core/main.css' rel='stylesheet' />
 <link href='__STATIC__/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 <link href='__STATIC__/fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
@@ -14,21 +13,14 @@
 <script src='__STATIC__/fullcalendar/packages/timegrid/main.js'></script>
 <script src='__STATIC__/fullcalendar/packages/interaction/main.js'></script>
 
-<script src='__JS__/calendar.js'></script>
-
+<script src='__JS__/calendar_ref.js'></script>
 {/block}
 
 
 {block name="container"}
 <main class="container">
-<br />
-<br />
-    <div id='external-events'>
-        <p>
-            <strong>Draggable Events</strong>
-        </p>
-    </div>
-
+    <br />
+    <br />
     <div id='calendar-container'>
         <div id="calendar"></div>
     </div>
