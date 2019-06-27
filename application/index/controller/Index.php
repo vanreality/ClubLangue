@@ -156,10 +156,18 @@ class Index extends Controller
         $person = array();
 
         foreach($conv as $val){
-            $cov_id = $val->id;
             $ref = $val->ref_id;
+            $user = $val->user_id;
+            /** Pour eviter les redondence on utilise un cov pour garder les deux cotes
+             * donc il faut faire un verification si user est user_id ou ref_id avant sortir les donnee*
+             */
+            if($ref!=$id){
+                $per = User::get($ref)->toArray();
+            }
+            else{
+                $per = User::get($user)->toArray();
+            }
             /** obtenir les infos des autres personnes dans la tableau user **/
-            $per = User::get($ref)->toArray();
             array_push($person, $per);
         }
         $this->assign("persons",$person);
@@ -199,6 +207,8 @@ class Index extends Controller
         $id =  $user['id'];
 
         $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
+        /** Envoyer en meme temps les id de utilisateur a la fin de tableau **/
+        array_push($conv,$id);
         return $conv;
     }
 
@@ -208,26 +218,25 @@ class Index extends Controller
         }
         $user = session('userinfo');
         $id =  $user['id'];
+        $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
 
-    $conv = (new \app\index\model\Conversation)->getConvByUserId($id);
-    $mes = array();
-    /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
-    $person = array();
-    /** content pour enregistrer les messages envoye **/
-    $content = array();
+        $mes = array();
+        /** person pour enregistrer les personnes que l'utilisateur ont deja parle**/
+        $person = array();
+        /** content pour enregistrer les messages envoye **/
+        $content = array();
 
-    foreach($conv as $val){
-        $cov_id = $val->id;
-        $ref = $val->ref_id;
-        /** obtenir les infos des autres personnes dans la tableau user **/
-        $per = User::get($ref)->toArray();
-        array_push($person, $per);
-        /** obtenir les infos des autres personnes dans la tableau user **/
-        $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
-        $content += $mes;
-    }
-
-    return $content;
+        foreach($conv as $val){
+            $cov_id = $val->id;
+            $ref = $val->ref_id;
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $per = User::get($ref)->toArray();
+            array_push($person, $per);
+            /** obtenir les infos des autres personnes dans la tableau user **/
+            $mes = [strval($cov_id) => (new \app\index\model\Message)->getMes($cov_id)];
+            $content += $mes;
+        }
+        return $content;
     }
 
     public function createConv(){
