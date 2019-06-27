@@ -141,8 +141,8 @@ class Index extends Controller
         }
     }
 
-    public function search_to_calendar($ref_id) {
-        $this->assign("ref_id", $ref_id);
+    public function search_to_calendar() {
+        $this->assign("ref_id", session("ref_id"));
         //TODO fetch ref_id calendar
        return $this->fetch('calendar_ref');
     }
@@ -279,8 +279,8 @@ class Index extends Controller
         return (new \app\index\model\Calendar)->loadEvent();
     }
 
-    public function load_ref_event($ref_id){
-        return (new \app\index\model\Calendar)->loadRefEvent($ref_id);
+    public function load_ref_event(){
+        return (new \app\index\model\Calendar)->loadRefEvent();
     }
     public function insert_event(){
         (new \app\index\model\Calendar)->insertEvent();

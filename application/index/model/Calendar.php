@@ -29,8 +29,20 @@ class Calendar extends Model
         $res=Calendar::where('user_id',$idload)->select();
         return $res;
     }
-    public function loadRefEvent($ref_id){
-        $res=Calendar::where('user_id',$ref_id)->select();
+    public function loadRefEvent(){
+        $type=0;
+        switch (\session("type")){
+            case "apprendre":
+                $type=1;
+                break;
+            case "enseigner":
+                $type=0;
+                break;
+        }
+        $res=Calendar::where('user_id',\session("ref_id"))
+                     ->where("status",0)
+                     ->where("type",$type)
+                     ->select();
         return $res;
     }
 

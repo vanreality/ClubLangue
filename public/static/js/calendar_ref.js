@@ -38,9 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
             $.ajax({
                 url:'load_ref_event',
                 type: 'POST',
-                data:{
-                     "ref_id":getQueryVariable("ref_id"),
-                },
                 error:function(){
                     alert("error");
                 },
@@ -75,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if(confirm("Réserver ce cours?"))
             {
-                
+
 
                 if(confirm("laisser un message/ lancer une conversation?")){
                     window.location="message";
