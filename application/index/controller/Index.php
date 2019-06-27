@@ -13,7 +13,6 @@ class Index extends Controller
     public function index()
     {
         return $this->fetch();
-        dump(new \app\index\model\Calendar)->loadEvent();
     }
 
     public function index_btn(){

@@ -67,13 +67,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 success: function(res){
                     var events = [];
-                    var time = new Date(res[0].time.replace(" ", "T"));
-                    //TODO 循环res
-                    events.push({
-                        start: time,
-                        title: res[0].language,
-                    });
-                    successCallback(events);
+                    var i=0;
+                    if(res!=null){
+                        for (i in res){
+                            var time = new Date(res[i].time.replace(" ", "T"));
+                            var lan = res[i].language;
+
+                            for(var j in languages) {
+                                if (lan === languages_short[j]){
+                                    lan = languages[j];
+                                }
+                            }
+
+                            events.push({
+                                start: time,
+                                title: type[res[i].type] + " " + lan,
+                            });
+                        }
+                        successCallback(events);
+                    }
+
                 }
             })
         },
