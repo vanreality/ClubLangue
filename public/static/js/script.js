@@ -30,6 +30,9 @@ function init() {
     arrowScroll = document.getElementById("mainSection");
     createAccount = document.getElementById("btnCreate");
 
+    //check when create an account, if all the information needed is OK
+    //If one of the conditions is not OK, this button doesn't work
+    //and show an alert message
     createAccount.onclick=function(){
         if(!checkUserEmail() || !checkUserName()  || !checkPass1()  || !verifyPass()){
             alert("votre saisi n'est pas correcte");
@@ -39,26 +42,33 @@ function init() {
     }
 }
 
+//from the top scroll to the section1
 function toSection1(){
     scrollSection1.scrollIntoView();
 }
 
+//from the top scroll to the section2
 function toSection2(){
     scrollSection2.scrollIntoView();
 }
 
+//scroll to the top by clicking on the arrow
 function toTop() {
     arrowScroll.scrollIntoView();
 }
 
 
+//check if the email is empty and valid
 function checkUserEmail() {
+    //if empty, show alert message and return false
    if(email.value === ""){
         email.style.border = "1px solid red";
         emailVide.style.display = "block";
         emailNonValid.style.display = "none";
         return false;
-    }else if(!myreg.test(email.value)){
+    }
+   //checked by a regular expression if the email is valid, not valid -> return false
+   else if(!myreg.test(email.value)){
        email.style.border = "1px solid red";
        emailVide.style.display = "none";
        emailNonValid.style.display = "block";
@@ -72,6 +82,7 @@ function checkUserEmail() {
    }
 }
 
+//check the length of user name >= 4
 function checkUserName() {
 
     if(pseudo.value.length <= 3){
@@ -88,6 +99,7 @@ function checkUserName() {
 
 }
 
+//check the length of password >= 6
 function checkPass1() {
     if(pass1.value.length <= 5){
         pass1.style.border = "1px solid red";
@@ -102,6 +114,7 @@ function checkPass1() {
     }
 }
 
+//verify the password, it should be the same as the first input
 function verifyPass() {
     if(pass1.value !== pass2.value){
         pass2.style.border = "1px solid red";
@@ -115,3 +128,6 @@ function verifyPass() {
         return true;
     }
 }
+
+
+

@@ -3,11 +3,13 @@
 {block name="container"}
 <main class="container">
 {php}
+<!--build a sentence to show the search information, which way and which language-->
     echo '<div class="searchInfo">';
     echo '<p id="searchText">Vous avez cherché pour: ';
     echo $_POST["type"];
     echo " ";
 
+<!--$_POST["language"] gives us the value, but not the text in it, get the text by switch -->
     switch($_POST["language"]){
         case "en":
             echo "anglais";
@@ -36,16 +38,12 @@
         }
 
     echo '</p>';
-            //TODO: add search info: type and language
-			//echo $facon;
-			//echo " ";
-			//echo $langue;
-			echo "</span></caption>";
 
+<!--if no user found, show this message -->
     if(empty($users)){
     echo '<p id="nonResultAlert">Aucun résultat trouvé! Veuillez essayer encore une fois avec vos préférences</p>';
     }
-
+<!--for each user, make a table : name, calendar, description, email  -->
 foreach($users as $val) {
 
 
