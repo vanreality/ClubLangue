@@ -108,20 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 })
             }
-            // var eventObj = info.event;
-            //
-            // if (eventObj.url) {
-            //     alert(
-            //         'Clicked ' + eventObj.title + '.\n' +
-            //         'Will open ' + eventObj.url + ' in a new tab'
-            //     );
-            //
-            //     window.open(eventObj.url);
-            //
-            //     info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
-            // } else {
-            //     alert('Clicked ' + eventObj.title);
-            // }
         },
         select: function(info)
         {
