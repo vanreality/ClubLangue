@@ -410,7 +410,12 @@ html, body{
 
 #searchText{
     text-indent: 20%;
+}
 
+#nonResultAlert{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 15%;
 }
 
 table{
