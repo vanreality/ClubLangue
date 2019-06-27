@@ -56,11 +56,8 @@ foreach($users as $val) {
                 echo $val["username"];
                 echo "</th>";
             echo '<th rowspan="2">';
-                    $url = "search_to_calendar?ref_id=" . $val["id"];
-                    echo"<a id=\"toCalendar\" href=\"".$url.'">calendar</a>
-                    session("ref_id", $val["id"]);
-                    session("type", $_POST["type"]);
-                    echo '<a id="toCalendar" href="search_to_calendar">calendar</a>';
+                $url = "search_to_calendar?ref_id=" . $val["id"] . "&" . "type=" . $_POST["type"];
+                echo "<a id=\"toCalendar\" href=\"" . $url . '">calendar</a>';
                 echo "</th>";
             echo '<td id="emailAdress">Adresse email: ';
                 echo $val["email"];
@@ -72,8 +69,7 @@ foreach($users as $val) {
                 echo "</td>";
             echo "</tr>";
         echo "</table>";
-
-}
+    }
     echo '</div>';
 {/php}
 </main>

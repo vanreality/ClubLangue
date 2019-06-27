@@ -278,12 +278,14 @@ class Index extends Controller
         return (new \app\index\model\Calendar)->loadEvent();
     }
 
-    public function load_ref_event(){
-        return (new \app\index\model\Calendar)->loadRefEvent();
+    public function load_ref_event($ref_id,$type){
+        session('ref_id',$ref_id);
+        session('type',$type);
+        return (new \app\index\model\Calendar)->loadRefEvent($ref_id,$type);
     }
 
     public function update_ref_event($id){
-        (new \app\index\model\Calendar)->updateRefEvent($id);
+        (new \app\index\model\Calendar)->updateRefEvent($id,session("type"));
     }
 
     public function insert_event(){

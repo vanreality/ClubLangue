@@ -26,12 +26,19 @@ class Calendar extends Model
 
     public function loadEvent(){
         $idload = session('userinfo')["id"];
-        $res=Calendar::where('user_id',$idload)->select();
+        $res2=Calendar::where('user_id',$idload)->select();
+
+        $res1=Calendar::where("ref_id",$idload)->select();
+
+        $res=[];
+
+        $res=$res1+$res2;
+        //array_merge($res,$res1,$res2);
+
         return $res;
     }
-    public function loadRefEvent(){
-        $type=0;
-        switch (\session("type")){
+    public function loadRefEvent($ref_id, $type){
+        switch ($type){
             case "apprendre":
                 $type=1;
                 break;
@@ -39,15 +46,21 @@ class Calendar extends Model
                 $type=0;
                 break;
         }
-        $res=Calendar::where('user_id',\session("ref_id"))
+        $res=Calendar::where('user_id',$ref_id)
                      ->where("status",0)
                      ->where("type",$type)
                      ->select();
         return $res;
     }
 
-    public function updateRefEvent($id){
-        Calendar::where("id",$id)->data("status",1)->update;
+    public function updateRefEvent($id,$type){
+        if($type==0)
+        Calendar::where("id",$id)->data("status",1)->update();
+        else{
+            Calendar::where("id",$id)->data("status",0)->update();
+        }
+        Calendar::where("id",$id)->data("ref_id",session('userinfo')["id"])->update();
+
     }
 
     public function dragInsertEvent($time, $language, $type){

@@ -78,11 +78,19 @@ document.addEventListener('DOMContentLoaded', function() {
                                     lan = languages[j];
                                 }
                             }
+                            var color;
+                            if(res[i].status==1){
+                                Color='#278006';
+                            }
+                            else {
+                                Color='#064780';
+                            }
 
                             events.push({
                                 id:res[i].id,
                                 start: time,
                                 title: type[res[i].type] + " " + lan,
+                                color: Color,
                             });
                         }
                         successCallback(events);

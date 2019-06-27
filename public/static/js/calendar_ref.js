@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
             $.ajax({
                 url:'load_ref_event',
                 type: 'POST',
+                data:{
+                    "ref_id":getQueryVariable("ref_id"),
+                    "type":getQueryVariable("type")
+                },
                 error:function(){
                     alert("error");
                 },
@@ -102,3 +106,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render();
 });
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
