@@ -34,9 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         drop: function(info) {
-            //TODO console.log可以看到info所包括的内容，其中有所拖拽块的相关信息，可以传给数据库，user信息在session里
-            console.log(info);
-
             var time = info.dateStr.replace(/T/, " ");
             time = time.substr(0, 19);
             $.ajax({

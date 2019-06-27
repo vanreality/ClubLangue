@@ -40,19 +40,15 @@ class Index extends Controller
         $data = (new \app\index\model\User)->getUser($email);
 //         dump($data);exit;
         if (!$data) {
-            //TODO 修改提醒信息
-            $this->error('用户名不存在，请确认后重试！');
+            $this->error("Le compte n'existe pas, vérifiez votre saisie");
         }
         // 判断密码是否正确
         if ($data['password'] == $password) {
             // 一般把用户信息存入session，记录登录状态
             session('userinfo',$data);
-            //TODO 修改提醒信息
-//            $this->success('登录成功！','index');
             return $this->fetch('profile');
         }else{
-            //TODO 修改提醒信息
-            $this->error('用户名和密码不匹配，请确认后重试！');
+            $this->error("Le mot de passe n'est pas correcte！");
         }
     }
 
@@ -77,20 +73,17 @@ class Index extends Controller
         $password = trim(input('password'));
         $password_check = trim(input('password_check'));
 
-        //TODO 修改提醒信息
         if (strlen($password) < 6) {
-            $this->error('密码长度不得小于6位！');
+            $this->error('Votre mot de passe doit contenir au moins 6 caractères！');
         }
 
-        //TODO 修改提醒信息
         if ($password != $password_check) {
-            $this->error('两次密码输入不相同！');
+            $this->error('Le mot de passe ne correspond pas！');
         }
 
         $userdata = (new \app\index\model\User)->getUser($email);
         if ($userdata) {
-            //TODO 修改提醒信息
-            $this->error('该用户名已经存在，请换一个重试！');
+            $this->error("L'utilisateur existe déjà！");
         }
         $data = [
             'email'    => $email,
@@ -99,11 +92,9 @@ class Index extends Controller
         ];
         $status = (new \app\index\model\User)->insert($data);
         if ($status == 1) {
-            //TODO 修改提醒信息
-            $this->success('恭喜您注册成功，现在前往登录页！','signin');
+            $this->success('Félicitations pour votre inscription, allez maintenant à la page de connexion！','signin');
         }else{
-            //TODO 修改提醒信息
-            $this->error('注册时出现问题，请重试或联系管理员！');
+            $this->error('Un problème est survenu lors de l\'inscription. Veuillez réessayer ou contacter l\'administrateur.！');
         }
     }
 
@@ -268,7 +259,6 @@ class Index extends Controller
         if ($status == 1) {
 
         }else{
-            //TODO 修改提醒信息
             $this->error('Veuillez renvoyer');
         }
     }
@@ -289,7 +279,6 @@ class Index extends Controller
     }
 
     public function drag_insert_event($time, $language, $type){
-        //TODO ajax传的参数目前只写了time，需要添加其他参数
         (new \app\index\model\Calendar)->dragInsertEvent($time, $language, $type);
     }
 }
