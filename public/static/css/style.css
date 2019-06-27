@@ -384,30 +384,50 @@ html, body{
 /*search.html*/
 
 .searchInfo{
-    padding-top: 10%;
+    padding-top: 5%;
     width: 100%;
-    height: 80%;
     text-align: left;
     display: inline-block;
     font-size:15px;
     color:#5c81a4;
 }
 
+
 #searchTable{
     width: 60%;
-    height: 20%;
-    margin-left: 20%;
-    margin-right: 20%;
     text-align: left;
     color:#5c81a4;
+    margin-left: 20%;
+    float: left;
+}
+
+
+#toCalendar{
+    color:#5c81a4;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#searchText{
+    text-indent: 20%;
+
 }
 
 table{
     border-collapse: collapse;
+    table-layout:fixed;
+    word-break:break-all;
+    margin-bottom: 2%;
 }
 
 table,tr,th,td{
     border:1px solid #5c81a4;
+    word-break: break-word;
+    text-indent: 2%;
+}
+
+th{
+    width: 15%;
 }
 
 #nom{
@@ -424,6 +444,8 @@ table,tr,th,td{
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+
 
 #external-events {
     position: fixed;
