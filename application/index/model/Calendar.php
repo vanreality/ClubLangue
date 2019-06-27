@@ -11,6 +11,8 @@ use think\View;
 class Calendar extends Model
 {
     protected $field = true;
+
+    //add the event
     public function insertEvent(){
         //TODO select insert
         $db = Db::name("events");
@@ -20,10 +22,13 @@ class Calendar extends Model
             'end_event'=>'2019-06-25 06:00:00',
         ]);
     }
+
+    //delete event
     public function deleteEvent($id){
         Calendar::where("id",$id)->delete();
     }
 
+    //load event
     public function loadEvent(){
 
         $idload = session('userinfo')["id"];
@@ -36,14 +41,7 @@ class Calendar extends Model
         return $res;
     }
 
-//    public function loadEventCheck(){
-//
-//        $idload = session('userinfo')["id"];
-//
-//
-//        return $res1;
-//    }
-
+    //load the regferenced event
     public function loadRefEvent($ref_id, $type){
         switch ($type){
             case "apprendre":
@@ -60,6 +58,7 @@ class Calendar extends Model
         return $res;
     }
 
+    //change the status of the event of the referenced user
     public function updateRefEvent($id){
 
         Calendar::where("id",$id)->data("status",1)->update();
@@ -67,12 +66,14 @@ class Calendar extends Model
 
     }
 
+    //change the status of the event of the referenced user
     public function cancelRefEvent($id){
         Calendar::where("id",$id)->data("status",0)->update();
         Calendar::where("id",$id)->data("ref_id",null)->update();
 
     }
 
+    //drag the event to add new event
     public function dragInsertEvent($time, $language, $type){
         $data = [
             'user_id'   => session("userinfo")["id"],
