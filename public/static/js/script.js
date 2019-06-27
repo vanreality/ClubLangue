@@ -119,4 +119,20 @@ function toTop() {
 }
 
 
+var jTa = $("<textarea>")
+    .click(function(){$(this).select();})
+    .keydown(function(contexte){
+        if (contexte.key == "Enter") {
+            var contenu = $(this).val();
+            var jTaClone = jTa.clone(true).html(contenu);
+            $(this).replaceWith(jTaClone);
+        }
+    });
+
+function showDescription(){
+        var jTaClone = jTa.clone(true).val("hhhhh");
+        $(this).append(jTaClone);
+        jTaClone.focus();
+}
+
 
