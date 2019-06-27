@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             events.push({
                                 id:res[i].id,
                                 start: time,
+                                description:res[i].status + "",
                                 title: type[res[i].type] + " " + lan,
                                 color: Color,
                             });
@@ -104,8 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if(confirm("Supprimer la réservation/le cours?"))
             {
                 var id = info.event.id;
-
-                if(info.event.status==1){
+                console.log(info.event.extendedProps.description);
+                if(info.event.extendedProps.description === "1"){
                     $.ajax({
                         url: 'cancel_ref_event',
                         type: 'POST',
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             }
         },
+
         select: function(info)
         {
             //TODO select 与 drag方法类似
