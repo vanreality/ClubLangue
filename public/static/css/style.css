@@ -457,7 +457,7 @@ th{
     position: fixed;
     z-index: 2;
     top: 100px;
-    left: 20px;
+    left: 100px;
     width: 150px;
     padding: 0 10px;
     border: 1px solid #ccc;
