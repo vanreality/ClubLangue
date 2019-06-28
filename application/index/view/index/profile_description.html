@@ -6,4 +6,15 @@
 {/block}
 
 {block name="container"}
+
+<div id="profileBody">
+
+    <h1 class="profileTitle">Voulez modifier votre description?</h1>
+
+    <form id="profileButtons" action="profile_description_save">
+        <textarea id="inputDescription" name="description">{php}echo session("userinfo")["description"];{/php}</textarea>
+        <input type="submit" value="Sauvegarder modification" class="profileBtn">
+    </form>
+</div>
+
 {/block}

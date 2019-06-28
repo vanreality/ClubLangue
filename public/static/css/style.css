@@ -177,16 +177,21 @@ html, body{
 
 /*partie profile.html*/
 #profileBody{
-    /*background-color: #f3f3f3;*/
     width:100%;
     height:70%;
-    padding-top:10%;
+    padding-top:5%;
     text-align: center;
-
 }
+
 #profileBody h1{
     font-size:30px;
     color:#5c81a4;
+}
+
+#profileBody p{
+    font-size: 20px;
+    color: #5c81a4;
+    margin-bottom: 0;
 }
 
 #profileButtons {
@@ -212,6 +217,28 @@ html, body{
 .profileBtn:hover {
     background-color: #5c81a4;
     color: #FFFFFF;
+}
+
+#inputDescription {
+    width: 90%;
+    height: 80%;
+    font-size: 20px;
+}
+
+.profileInput {
+    height: 15%;
+    width: 90%;
+    border: 1px solid #5c81a4;
+    border-radius: 15px;
+    font-size: 25px;
+    outline: medium;
+    text-indent: 20px;
+    margin-top: 5%;
+}
+
+.profileInfo {
+    text-align: left;
+    margin-left: 5%;
 }
 
 /*partie signin.html*/

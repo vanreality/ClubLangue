@@ -117,6 +117,15 @@ class Index extends Controller
         return $this->fetch();
     }
 
+    public function profile_description_save() {
+        $description = trim(input('description'));
+        $uid = session('userinfo')['id'];
+        (new \app\index\model\User)->saveDescription($uid, $description);
+        $data = (new \app\index\model\User)->getUser(session('userinfo')['email']);
+        session('userinfo', $data);
+        return $this->fetch("profile");
+    }
+
     // Part Search
 
     public function search() {
@@ -269,7 +278,6 @@ class Index extends Controller
         ];
         (new \app\index\model\Conversation)->insert($data);
     }
-
 
     /** cette fonction est pour maj les donnees de conversation **/
     public function upConversation(){

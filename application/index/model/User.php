@@ -30,4 +30,10 @@ class User extends Model
         }
         return $data;
     }
+
+    public function saveDescription($uid, $description) {
+        $user = User::where('id', $uid)->find();
+        $user->description = $description;
+        $user->save();
+    }
 }
