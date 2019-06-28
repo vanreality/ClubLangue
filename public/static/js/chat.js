@@ -109,10 +109,26 @@ function allCov(data){
 
         var friend = friends.list.querySelector('[data-chat="' + id + '"]');
         var time = friend.querySelector('.time');
+        var statu = friend.querySelector('.etatDeCov');
         var length = data[cov_id].length;
         if(length>0) {
             var date = data[cov_id][length - 1].time.substr(5, 16);
+            var idSpeakFin = data[cov_id][length-1].speaker_id;
             $(time).html(date);
+            console.log(idSpeakFin);
+
+            /** verifier le status par la fin de parleur
+             * si l'utilisateur a repondu
+             * le couleur de fond est vert
+             * si l'utilisatuer a pas encore repondu
+             * le couleur de fond est rouge
+             * **/
+            if(idSpeakFin == id_user){
+                $(statu).css('background', 'green');
+                console.log("rest");
+            }else{
+                $(statu).css('background', 'red');
+            }
 
             for (i = 0; i < data[cov_id].length; i++) {
                 var dataM = data[cov_id];
