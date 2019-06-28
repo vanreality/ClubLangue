@@ -52,11 +52,6 @@ class Index extends Controller
         }
     }
 
-    public function profile()
-    {
-        return $this->fetch();
-    }
-
     public function signout() {
         session('userinfo', null);
         return $this->fetch('index');
@@ -105,6 +100,21 @@ class Index extends Controller
             $this->assign("userinfo", session('userinfo'));
             return $this->fetch();
         }
+    }
+
+    // Part Profile
+
+    public function profile()
+    {
+        return $this->fetch();
+    }
+
+    public function profile_description() {
+        return $this->fetch();
+    }
+
+    public function profile_password() {
+        return $this->fetch();
     }
 
     // Part Search

@@ -1,7 +1,7 @@
 {extend name="common/base" /}
 
 {block name="head"}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="__JS__/jquery-3.4.1.min.js"></script>
 <script src="__JS__/profile.js"></script>
 {/block}
 
@@ -9,20 +9,16 @@
 <main class="container">
 <div id="profileBody">
 
-    <h1 class="profileTitle">Bienvenue, {php}echo session("userinfo")["username"]{/php} !</h1><br />
+    <h1 class="profileTitle">Bienvenue, {php}echo session("userinfo")["username"]{/php} !</h1>
 
     <div id="profileButtons">
-        <button class="profileBtn" name="description" onclick="showDescription();">Modifier votre description</button> <br />
+        <a href="{:url('profile_description')}">
+            <button class="profileBtn" name="description" onclick="showDescription();">Modifier votre description</button>
+        </a>
 
-<!--        <textarea id="profileDescription"></textarea>-->
-
-        <button class="profileBtn" name="modification" onclick="Modifier();">Modifier votre mot de passe</button> <br />
-
-<!--        <input>-->
-<!--        <br>-->
-<!--        <input>-->
-<!--        <br>-->
-<!--        <input>-->
+        <a href="{:url('profile_password')}">
+            <button class="profileBtn" name="modification" onclick="Modifier();">Modifier votre mot de passe</button>
+        </a>
 
         <a href="{:url('signout')}">
             <button  class="profileBtn" name="disconnenct">Se déconnecter</button>
